@@ -1,5 +1,5 @@
 (use-modules (srfi srfi-64))
-(load "lib.scm")
+(load "lib/atom.scm")
 
 (test-begin "toys-test")
 
