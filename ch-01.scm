@@ -1,7 +1,7 @@
 (use-modules (srfi srfi-64))
 (load "lib/util.scm")
 
-(test-begin "toys-test")
+(test-begin "ch-01-test")
 
 ;;これはアトムですか?
 (test-assert (atom? 'atom))
