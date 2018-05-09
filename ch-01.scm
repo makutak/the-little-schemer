@@ -1,3 +1,6 @@
+#!/usr/local/bin/guile
+!#
+
 (use-modules (srfi srfi-64))
 (load "lib/util.scm")
 
@@ -86,4 +89,4 @@
 (test-assert (not (eq? (cdr '(soured milk)) 'milk)))
 (test-assert (eq? (car '(beans beans we need jerry beand))) (car (cdr '(beans beans we need jerry beand))))
 
-(test-end "toys-test")
+(test-end "ch-01-test")
