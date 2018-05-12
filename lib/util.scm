@@ -1,3 +1,8 @@
+(define-module (util)
+  #:export (atom?
+            lat?
+            member?))
+
 (define atom?
   (lambda (x)
     (and (not (pair? x)) (not (null? x)))))
