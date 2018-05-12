@@ -39,16 +39,16 @@
 (test-assert (list? '('() '() '())))
 
 ;;car
-(test-assert 'a (car '(a b c)))
-(test-assert '(a b c) (car '((a b c) x y z)))
-(test-assert '((hotdogs)) (car '(((hotdogs)) '(and) '(pickle) relish)))
-(test-assert '(hotdogs) (car (car '(((hotdogs)) '(and)))))
+(test-equal 'a (car '(a b c)))
+(test-equal '(a b c) (car '((a b c) x y z)))
+(test-equal '((hotdogs)) (car '(((hotdogs)) '(and) '(pickle) relish)))
+(test-equal '(hotdogs) (car (car '(((hotdogs)) '(and)))))
 
 ;;cdr
-(test-assert '(b c) (cdr '(a b c)))
-(test-assert '(x y z) (cdr '((a b c) x y z)) )
-(test-assert '() (cdr '(hamburger)))
-(test-assert '(t r) (cdr '((x) t r)))
+(test-equal '(b c) (cdr '(a b c)))
+(test-equal '(x y z) (cdr '((a b c) x y z)) )
+(test-equal '() (cdr '(hamburger)))
+(test-equal '(t r) (cdr '((x) t r)))
 (test-error (cdr 'hotdogs))
 (test-error (cdr '()))
 
