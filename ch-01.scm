@@ -1,8 +1,10 @@
 #!/usr/local/bin/guile
 !#
 
-(use-modules (srfi srfi-64))
+(import (srfi srfi-64))
 (load "lib/util.scm")
+
+(set! test-log-to-file #f)
 
 (test-begin "ch-01-test")
 
