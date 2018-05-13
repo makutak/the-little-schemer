@@ -1,8 +1,10 @@
 #!/usr/local/bin/guile
 !#
 
-(use-modules (srfi srfi-64))
-(load "lib/util.scm")
+(add-to-load-path "./lib/")
+(import (srfi srfi-64) (util))
+
+(set! test-log-to-file #f)
 
 (test-begin "ch-01-test")
 
@@ -37,16 +39,16 @@
 (test-assert (list? '('() '() '())))
 
 ;;car
-(test-assert (eq? (car '(a b c)) 'a))
-(test-assert (eq? (car '((a b c) x y z)) '(a b c)))
-(test-assert (eq? (car '(((hotdogs)) '(and) '(pickle) relish)) '((hotdogs))))
-(test-assert (eq? (car (car '(((hotdogs)) '(and)))) '(hotdogs)))
+(test-equal 'a (car '(a b c)))
+(test-equal '(a b c) (car '((a b c) x y z)))
+(test-equal '((hotdogs)) (car '(((hotdogs)) '(and) '(pickle) relish)))
+(test-equal '(hotdogs) (car (car '(((hotdogs)) '(and)))))
 
 ;;cdr
-(test-assert (eq? (cdr '(a b c)) '(b c)))
-(test-assert (eq? (cdr '((a b c) x y z)) '(x y z)))
-(test-assert (eq? (cdr '(hamburger)) '()))
-(test-assert (eq? (cdr '((x) t r))) '(t r))
+(test-equal '(b c) (cdr '(a b c)))
+(test-equal '(x y z) (cdr '((a b c) x y z)) )
+(test-equal '() (cdr '(hamburger)))
+(test-equal '(t r) (cdr '((x) t r)))
 (test-error (cdr 'hotdogs))
 (test-error (cdr '()))
 
