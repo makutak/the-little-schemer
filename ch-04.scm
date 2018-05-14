@@ -42,3 +42,16 @@
 (test-equal 8 (o- 17 9))
 (test-end "o--test")
 
+(define addtup
+  (lambda (tup)
+    (cond
+     ((null? tup) 0)
+     (else
+      (o+ (car tup) (addtup (cdr tup)))))))
+
+;;memo: tup -> 数のリストのこと
+(test-begin "addtup-test")
+(test-equal 18 (addtup '(3 5 2 8)))
+(test-equal 43 (addtup '(15 6 7 12 3)))
+(test-end "addtup-test")
+
