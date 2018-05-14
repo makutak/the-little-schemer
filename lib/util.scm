@@ -1,7 +1,9 @@
 (define-module (util)
   #:export (atom?
             lat?
-            member?))
+            member?
+            add1
+            sub1))
 
 (define atom?
   (lambda (x)
@@ -19,3 +21,11 @@
      ((null? lat) #f)
      (else (or (eq? (car lat) a)
                (member? a (cdr lat)))))))
+
+(define add1
+  (lambda (n)
+    (+ n 1)))
+
+(define sub1
+  (lambda (n)
+    (- n 1)))
