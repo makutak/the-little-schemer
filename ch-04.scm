@@ -109,3 +109,16 @@
 (test-equal #f (o< 8 3))
 (test-equal #f (o< 6 6))
 (test-end "o<-test")
+
+(define o=
+  (lambda (n m)
+    (cond
+     ((o> n m) #f)
+     ((o< n m) #f)
+     (else #t))))
+
+(test-begin "o=-test")
+(test-equal #t (o= 1 1))
+(test-equal #f (o= 1 0))
+(test-equal #f (o= 0 1))
+(test-end "o=-test")
