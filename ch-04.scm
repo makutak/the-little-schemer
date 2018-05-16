@@ -123,3 +123,16 @@
 (test-equal #f (o= 1 0))
 (test-equal #f (o= 0 1))
 (test-end "o=-test")
+
+(define o**
+  (lambda (n m)
+    (cond
+     ((zero? m) 1)
+     (else
+      (o* n (o** n (sub1 m)))))))
+
+(test-begin "o**-test")
+(test-equal 1 (o** 1 1))
+(test-equal 8 (o** 2 3))
+(test-equal 125 (o** 5 3))
+(test-end "o**-test")
