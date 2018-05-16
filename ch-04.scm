@@ -137,3 +137,15 @@
 (test-equal 125 (o** 5 3))
 (test-equal 1 (o** 100000 0))
 (test-end "o**-test")
+
+(define o/
+  (lambda (n m)
+    (cond
+     ((o< n m) 0)
+     (else
+      (add1 (o/ (o- n m) m))))))
+
+(test-begin "o/-test")
+(test-equal 3 (o/ 15 4))
+(test-equal 20 (o/ 100 5))
+(test-end "o/-test")
