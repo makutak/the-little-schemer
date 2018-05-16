@@ -135,4 +135,5 @@
 (test-equal 1 (o** 1 1))
 (test-equal 8 (o** 2 3))
 (test-equal 125 (o** 5 3))
+(test-equal 1 (o** 100000 0))
 (test-end "o**-test")
