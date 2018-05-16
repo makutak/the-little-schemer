@@ -90,6 +90,7 @@
      ((zero? m) #t)
      (else
       (o> (sub1 n) (sub1 m))))))
+
 (test-begin "o>-test")
 (test-equal #f (o> 12 133))
 (test-equal #t (o> 120 11))
