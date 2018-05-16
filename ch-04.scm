@@ -82,3 +82,30 @@
 (test-equal '(7 13) (tup+ '(3 7) '(4 6)))
 (test-equal '(7 13 8 1) (tup+ '(3 7) '(4 6 8 1)))
 (test-end "tup+-test")
+
+(define o>
+  (lambda (n m)
+    (cond
+     ((zero? n) #f)
+     ((zero? m) #t)
+     (else
+      (o> (sub1 n) (sub1 m))))))
+(test-begin "o>-test")
+(test-equal #f (o> 12 133))
+(test-equal #t (o> 120 11))
+(test-equal #f (o> 3 3))
+(test-end "o>-test")
+
+(define o<
+  (lambda (n m)
+    (cond
+     ((zero? m) #f)
+     ((zero? n) #t)
+     (else
+      (o< (sub1 n) (sub1 m))))))
+
+(test-begin "o<-test")
+(test-equal #t (o< 4 6))
+(test-equal #f (o< 8 3))
+(test-equal #f (o< 6 6))
+(test-end "o<-test")
