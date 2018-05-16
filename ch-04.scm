@@ -149,3 +149,16 @@
 (test-equal 3 (o/ 15 4))
 (test-equal 20 (o/ 100 5))
 (test-end "o/-test")
+
+(define o-length
+  (lambda (lat)
+    (cond
+     ((null? lat) 0)
+     (else
+      (add1 (o-length (cdr lat)))))))
+
+(test-begin "o-length-test")
+(test-equal 6 (o-length '(hotdogs with mustard sauerkraut and pickles)))
+(test-equal 5 (o-length '(ham and cheese on rye)))
+(test-equal 0 (o-length '()))
+(test-end "o-length-test")
