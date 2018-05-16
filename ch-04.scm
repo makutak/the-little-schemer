@@ -55,3 +55,14 @@
 (test-equal 43 (addtup '(15 6 7 12 3)))
 (test-end "addtup-test")
 
+(define o*
+  (lambda (n m)
+    (cond
+     ((zero? m) 0)
+     (else
+      (o+ n (o* n (sub1 m)))))))
+
+(test-begin "o*-test")
+(test-equal 36 (o* 12 3))
+(test-end "o*-test")
+
