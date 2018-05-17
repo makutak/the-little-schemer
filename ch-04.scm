@@ -174,4 +174,3 @@
 (test-equal 'macaroni (pick 4 '(lasagna spaghetti ravioli macaroni meatball)))
 (test-error (pick 0 '(a)))
 (test-end "pick-test")
-
