@@ -162,3 +162,16 @@
 (test-equal 5 (o-length '(ham and cheese on rye)))
 (test-equal 0 (o-length '()))
 (test-end "o-length-test")
+
+(define pick
+  (lambda (n lat)
+    (cond
+     ((zero? (sub1 n)) (car lat))
+     (else
+      (pick (sub1 n) (cdr lat))))))
+
+(test-begin "pick-test")
+(test-equal 'macaroni (pick 4 '(lasagna spaghetti ravioli macaroni meatball)))
+(test-error (pick 0 '(a)))
+(test-end "pick-test")
+
