@@ -232,3 +232,19 @@
 (test-equal #t (eqan? 'a 'a))
 (test-equal #f (eqan? 'a 'b))
 (test-end "eqan?-test")
+
+(define occur
+  (lambda (a lat)
+    (cond
+     ((null? lat) 0)
+     ((eq? (car lat) a)
+      (add1 (occur a (cdr lat))))
+     (else
+      (occur a (cdr lat))))))
+
+(test-begin "occur-test")
+(test-equal 2 (occur 'big '(a big black bug bit a big black bear)))
+(test-equal 1 (occur 'bit '(a big black bug bit a big black bear)))
+(test-equal 0 (occur 'hoge '(a big black bug bit a big black bear)))
+(test-equal 2 (occur 'black '(a big black bug bit a big black bear)))
+(test-end "occur-test")
