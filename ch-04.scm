@@ -200,3 +200,17 @@
 (test-begin "no-nums-test")
 (test-equal '(pears prunes dates) (no-nums '(5 pears 6 prunes 9 dates)))
 (test-end "no-nums-test")
+
+(define all-nums
+  (lambda (lat)
+    (cond
+     ((null? lat) (quote ()))
+     ((number? (car lat))
+      (cons (car lat)
+            (all-nums (cdr lat))))
+     (else
+      (all-nums (cdr lat))))))
+
+(test-begin "all-nums-test")
+(test-equal '(5 6 9) (all-nums '(5 pears 6 prunes 9 dates)))
+(test-end "all-nums-test")
