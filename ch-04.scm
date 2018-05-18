@@ -175,19 +175,6 @@
 (test-error (pick 0 '(a)))
 (test-end "pick-test")
 
-(define rempick
-  (lambda (n lat)
-    (cond
-     ((zero? (sub1 n)) (cdr lat))
-     (else
-      (cons
-       (car lat)
-       (rempick (sub1 n) (cdr lat)))))))
-
-(test-begin "rempick-test")
-(test-equal '(hotdogs with mustard) (rempick 3 '(hotdogs with hot mustard)))
-(test-end"rempick-test")
-
 (define no-nums
   (lambda (lat)
     (cond
@@ -258,3 +245,17 @@
 (test-equal #f (one? 2039))
 (test-equal #f (one? 0))
 (test-end "one?-test")
+
+(define rempick
+  (lambda (n lat)
+    (cond
+     ((one? n) (cdr lat))
+     (else
+      (cons
+       (car lat)
+       (rempick (sub1 n) (cdr lat)))))))
+
+(test-begin "rempick-test")
+(test-equal '(hotdogs with mustard) (rempick 3 '(hotdogs with hot mustard)))
+(test-equal '(lemon meringue pie) (rempick 3 '(lemon meringue salty pie)))
+(test-end"rempick-test")
