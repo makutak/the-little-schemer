@@ -214,3 +214,21 @@
 (test-begin "all-nums-test")
 (test-equal '(5 6 9) (all-nums '(5 pears 6 prunes 9 dates)))
 (test-end "all-nums-test")
+
+(define eqan?
+  (lambda (a1 a2)
+    (cond
+     ((and (number? a1) (number? a2))
+      (= a1 a2))
+     ((or (number? a1) (number? a2))
+      #f)
+     (else
+      (eq? a1 a2)))))
+
+(test-begin "eqan?-test")
+(test-equal #t (eqan? 1 1))
+(test-equal #f (eqan? 1 2))
+(test-equal #f (eqan? 'a 1))
+(test-equal #t (eqan? 'a 'a))
+(test-equal #f (eqan? 'a 'b))
+(test-end "eqan?-test")
