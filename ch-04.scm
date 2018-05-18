@@ -248,3 +248,13 @@
 (test-equal 0 (occur 'hoge '(a big black bug bit a big black bear)))
 (test-equal 2 (occur 'black '(a big black bug bit a big black bear)))
 (test-end "occur-test")
+
+(define one?
+  (lambda (n)
+    (= n 1)))
+
+(test-begin "one?-test")
+(test-equal #t (one? 1))
+(test-equal #f (one? 2039))
+(test-equal #f (one? 0))
+(test-end "one?-test")
