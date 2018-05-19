@@ -29,4 +29,11 @@
             (rember* 'cup
                      '((coffee) cup ((tea) cup)
                        (and (hick)) cup)))
+
+(test-equal '(((tomato))
+              ((bean))
+              (and ((flying))))
+  (rember* 'sauce '(((tomato sauce))
+                   ((bean) sauce)
+                   (and ((flying)) sauce))))
 (test-end "rember*-test")
