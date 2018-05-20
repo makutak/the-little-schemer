@@ -101,3 +101,26 @@
             (bread)
             (banana brandy))))
 (test-end "occur*-test")
+
+(define subst*
+  (lambda (new old l)
+    "subst*"))
+
+(test-begin "subst*-test")
+(test-equal '((orange)
+              (split ((((orange ice)))
+                      (cream (orange))
+                      sherbet))
+              (orange)
+              (bread)
+              (orange brandy))
+  (subst* 'orange
+          'banana
+          '((banana)
+            (split ((((banana ice)))
+                    (cream (banana))
+                    sherbet))
+            (banana)
+            (bread)
+            (banana brandy))))
+(test-end "subst*-test")
