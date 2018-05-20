@@ -37,3 +37,25 @@
                    ((bean) sauce)
                    (and ((flying)) sauce))))
 (test-end "rember*-test")
+
+(define insertR*
+  (lambda (new old l)
+    "insertR*"))
+
+(test-begin "insertR*-test")
+(test-equal '((how much (wood))
+              could
+              ((a (wood)))
+              (((chuck)))
+              (if (a) ((wood)))
+              (could wood))
+  (insertR* 'roast
+            'chuck
+            '((how much (wood))
+              could
+              ((a (wood) chunk))
+              (((chuck)))
+              (if (a) ((wood chunk)))
+              (could chuck wood))))
+
+(test-end "insertR*-test")
