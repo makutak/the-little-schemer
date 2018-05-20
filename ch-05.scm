@@ -26,9 +26,9 @@
 (test-begin "rember*-test")
 (test-equal '((coffee) ((tea))
               (and (hick)))
-            (rember* 'cup
-                     '((coffee) cup ((tea) cup)
-                       (and (hick)) cup)))
+  (rember* 'cup
+           '((coffee) cup ((tea) cup)
+             (and (hick)) cup)))
 
 (test-equal '(((tomato))
               ((bean))
