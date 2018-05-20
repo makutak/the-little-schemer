@@ -3,7 +3,9 @@
             lat?
             member?
             add1
-            sub1))
+            sub1
+            o+
+            o-))
 
 (define atom?
   (lambda (x)
@@ -29,3 +31,17 @@
 (define sub1
   (lambda (n)
     (- n 1)))
+
+(define o+
+  (lambda (n m)
+    (cond
+     ((zero? m) n)
+     (else
+      (add1 (o+ n (sub1 m)))))))
+
+(define o-
+  (lambda (n m)
+    (cond
+     ((zero? m) n)
+     (else
+      (sub1 (o- n (sub1 m)))))))
