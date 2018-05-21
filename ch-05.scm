@@ -194,4 +194,16 @@
            '((potato)
              (chips
               ((with) fish) (chips)))))
+(test-equal #t
+  (member* 'fish
+           '((potato)
+             (chips
+              ((with) fish) (chips)))))
+(test-equal #t
+  (member* 'much '((how much (wood))
+                   could
+                   ((a (wood) chuck))
+                   (((chuck)))
+                   (if (a) ((wood chuck)))
+                   (could chuck wood))))
 (test-end "member*-test")
