@@ -223,3 +223,10 @@
 (test-error (leftmost '(((() four)) 17 (seventeen))))
 (test-error (leftmost (quote ())))
 (test-end "leftmost-test")
+
+(test-begin "and-review-test")
+(test-equal #f (and (atom? (car '(mozzarella pizza)))
+                    (eq? '(mozzarella pizza) 'pizza)))
+(test-equal #f (and (atom? (car '((mozzarella mushuroom) pizza)))
+                    (eq? '((mozzarella mushuroom) pizza) 'pizza)))
+(test-begin "and-review-test")
