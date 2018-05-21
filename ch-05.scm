@@ -230,3 +230,25 @@
 (test-equal #f (and (atom? (car '((mozzarella mushuroom) pizza)))
                     (eq? '((mozzarella mushuroom) pizza) 'pizza)))
 (test-end "and-review-test")
+
+(define eqlist?
+  (lambda (l1 l2)
+    #t))
+
+(test-begin "eqlist?-test")
+(test-equal #t
+  (eqlist? '(strawberry ice cream)
+           '(strawberry ice cream)))
+(test-equal #f
+  (eqlist? '(strawberry ice cream)
+           '(strawberry cream ice)))
+(test-equal #f
+  (eqlist? '(banana ((split)))
+           '((banana) (split))))
+(test-equal #f
+  (eqlist? '(beef ((sausage)) (and (soda)))
+           '(beef ((salami)) (and (soda)))))
+(test-equal #t
+  (eqlist? '(beef ((sausage)) (and (soda)))
+           '(beef ((sausage)) (and (soda)))))
+(test-end "eqlist?-test")
