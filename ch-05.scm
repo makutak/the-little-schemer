@@ -169,3 +169,15 @@
               (if (a) ((wood chuck)))
               (could chuck wood))))
 (test-end "insertL*-test")
+
+(define member*
+  (lambda (a l)
+    "member*"))
+
+(test-begin "member*-test")
+(test-equal #t
+  (member* 'chips
+           '((potato)
+             (chips
+              ((with) fish) (chips)))))
+(test-end "member*-test")
