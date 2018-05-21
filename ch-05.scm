@@ -220,4 +220,6 @@
   (leftmost '((potato) (chips ((with) fish) (chips)))))
 (test-equal 'hot
   (leftmost '(((hot) (tuna (and))) cheese)))
+(test-error (leftmost '(((() four)) 17 (seventeen))))
+(test-error (leftmost (quote ())))
 (test-end "leftmost-test")
