@@ -207,3 +207,17 @@
                    (if (a) ((wood chuck)))
                    (could chuck wood))))
 (test-end "member*-test")
+
+(define leftmost
+  (lambda (l)
+    (cond
+     ((atom? (car l)) (car l))
+     (else
+      (leftmost (car l))))))
+
+(test-begin "leftmost-test")
+(test-equal 'potato
+  (leftmost '((potato) (chips ((with) fish) (chips)))))
+(test-equal 'hot
+  (leftmost '(((hot) (tuna (and))) cheese)))
+(test-end "leftmost-test")
