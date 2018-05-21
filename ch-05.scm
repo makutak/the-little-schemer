@@ -229,4 +229,4 @@
                     (eq? '(mozzarella pizza) 'pizza)))
 (test-equal #f (and (atom? (car '((mozzarella mushuroom) pizza)))
                     (eq? '((mozzarella mushuroom) pizza) 'pizza)))
-(test-begin "and-review-test")
+(test-end "and-review-test")
