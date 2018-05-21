@@ -172,7 +172,16 @@
 
 (define member*
   (lambda (a l)
-    "member*"))
+    (cond
+     ((null? l) #f)
+     ((atom? (car l))
+      (cond
+       ((eq? (car l) a) #t)
+       (else #f)))
+     (else
+      (or
+       (member* a (car l))
+       (member* a (cdr l)))))))
 
 (test-begin "member*-test")
 (test-equal #t
