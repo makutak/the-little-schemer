@@ -189,4 +189,9 @@
            '((potato)
              (chips
               ((with) fish) (chips)))))
+(test-equal #f
+  (member* 'hogehoge
+           '((potato)
+             (chips
+              ((with) fish) (chips)))))
 (test-end "member*-test")
