@@ -177,7 +177,8 @@
      ((atom? (car l))
       (cond
        ((eq? (car l) a) #t)
-       (else #f)))
+       (else
+        (member* a (cdr l)))))
      (else
       (or
        (member* a (car l))
