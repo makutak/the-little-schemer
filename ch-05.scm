@@ -175,10 +175,9 @@
     (cond
      ((null? l) #f)
      ((atom? (car l))
-      (cond
-       ((eq? (car l) a) #t)
-       (else
-        (member* a (cdr l)))))
+      (or
+       (eq? (car l) a)
+       (member* a (cdr l))))
      (else
       (or
        (member* a (car l))
