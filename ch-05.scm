@@ -284,3 +284,33 @@
 (test-equal #t (equal?? '(i like banana) '(i like banana) ))
 (test-equal #f (equal?? '(i like banana) '(i love banana) ))
 (test-end "equal??-test")
+
+(define eqlist?2
+  (lambda (l1 l2)
+    (cond
+     ((and (null? l1) (null? l2))
+      #t)
+     ((or (null? l1) (null? l2))
+      #f)
+     (else
+      (and
+       (equal?? (car l1) (car l2))
+       (eqlist? (cdr l1) (cdr l2)))))))
+
+(test-begin "eqlist?2-test")
+(test-equal #t
+  (eqlist?2 '(strawberry ice cream)
+           '(strawberry ice cream)))
+(test-equal #f
+  (eqlist?2 '(strawberry ice cream)
+           '(strawberry cream ice)))
+(test-equal #f
+  (eqlist?2 '(banana ((split)))
+           '((banana) (split))))
+(test-equal #f
+  (eqlist?2 '(beef ((sausage)) (and (soda)))
+           '(beef ((salami)) (and (soda)))))
+(test-equal #t
+  (eqlist?2 '(beef ((sausage)) (and (soda)))
+           '(beef ((sausage)) (and (soda)))))
+(test-end "eqlist?2-test")
