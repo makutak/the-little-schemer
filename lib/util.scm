@@ -5,7 +5,8 @@
             add1
             sub1
             o+
-            o-))
+            o-
+            eqan?))
 
 (define atom?
   (lambda (x)
@@ -45,3 +46,13 @@
      ((zero? m) n)
      (else
       (sub1 (o- n (sub1 m)))))))
+
+(define eqan?
+  (lambda (a1 a2)
+    (cond
+     ((and (number? a1) (number? a2))
+      (= a1 a2))
+     ((or (number? a1) (number? a2))
+      #f)
+     (else
+      (eq? a1 a2)))))
