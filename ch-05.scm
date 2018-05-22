@@ -314,3 +314,14 @@
   (eqlist?2 '(beef ((sausage)) (and (soda)))
            '(beef ((sausage)) (and (soda)))))
 (test-end "eqlist?2-test")
+
+(define rember
+  (lambda (s l)
+    l))
+
+(test-begin "rember-test")
+(test-equal '(apples oranges)
+  (rember
+   '(foo (bar (baz)))
+   '(apples (foo (bar (baz))) oranges)))
+(test-end "rember-test")
