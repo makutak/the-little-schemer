@@ -265,3 +265,22 @@
   (eqlist? '(beef ((sausage)) (and (soda)))
            '(beef ((sausage)) (and (soda)))))
 (test-end "eqlist?-test")
+
+(define equal??
+  (lambda (s1 s2)
+    (cond
+     ((and (atom? s1) (atom? s2))
+      (eqan? s1 s2))
+     ((or (atom? s1) (atom? s2))
+      #f)
+     (else
+      (eqlist? s1 s2)))))
+
+(test-begin "equal??-test")
+(test-equal #t (equal?? 1 1))
+(test-equal #f (equal?? 1 0))
+(test-equal #t (equal?? 'banana 'banana))
+(test-equal #f (equal?? 'banana 'apple))
+(test-equal #t (equal?? '(i like banana) '(i like banana) ))
+(test-equal #f (equal?? '(i like banana) '(i love banana) ))
+(test-end "equal??-test")
