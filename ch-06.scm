@@ -33,6 +33,10 @@
   (test-equal #t
     (numbered? x)))
 
+(let ((x '(1 o+ 1)))
+  (test-equal #t
+    (numbered? x)))
+
 (let ((y '(3 o+ (4 o^ 5))))
   (test-equal #t
     (numbered? y)))
