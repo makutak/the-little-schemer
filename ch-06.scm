@@ -49,7 +49,17 @@
 
 (define value
   (lambda (nexp)
-    nexp))
+    (cond
+     ((atom? nexp) nexp)
+     ((eq? (car (cdr nexp)) 'o+)
+      (o+ (value (car nexp))
+          (value (car (cdr (cdr nexp))))))
+     ((eq? (car (cdr nexp)) 'o*)
+      (o* (value (car nexp))
+          (value (car (cdr (cdr nexp))))))
+     (else
+      (o^ (value (car nexp))
+          (value (car (cdr (cdr nexp)))))))))
 
 (test-begin "value-test")
 
@@ -66,7 +76,7 @@
     (value y)))
 
 (let ((z 'cookie))
-  (test-error
+  (test-equal 'cookie
    (value z)))
 
 (test-end "value-test")
