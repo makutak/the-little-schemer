@@ -6,6 +6,8 @@
             sub1
             o+
             o-
+            o*
+            o^
             eqan?))
 
 (define atom?
@@ -46,6 +48,20 @@
      ((zero? m) n)
      (else
       (sub1 (o- n (sub1 m)))))))
+
+(define o*
+  (lambda (n m)
+    (cond
+     ((zero? m) 0)
+     (else
+      (o+ n (o* n (sub1 m)))))))
+
+(define o^
+  (lambda (n m)
+    (cond
+     ((zero? m) 1)
+     (else
+      (o* n (o^ n (sub1 m)))))))
 
 (define eqan?
   (lambda (a1 a2)
