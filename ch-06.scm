@@ -79,4 +79,8 @@
   (test-equal 'cookie
    (value z)))
 
+(let ((a '(1 o+ (3 o* 4))))
+  (test-equal '13
+    (value a)))
+
 (test-end "value-test")
