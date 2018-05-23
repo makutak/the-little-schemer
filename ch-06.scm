@@ -80,7 +80,11 @@
    (value z)))
 
 (let ((a '(1 o+ (3 o* 4))))
-  (test-equal '13
+  (test-equal 13
     (value a)))
+
+(let ((b '((1 o+ 3) o* 4)))
+  (test-equal 16
+    (value b)))
 
 (test-end "value-test")
