@@ -6,6 +6,13 @@
 
 (set! test-log-to-file #f)
 
+
+;; memo: 算術式とは
+;; 数を含むアトムか、
+;; 2つの算術式を o+, o*, o^ で結合したものである。
+
+;; 算術式の表現が、
+;; o+, o*, o^ を除いて数だけを含んでいるか
 (define numbered?
   (lambda (aexp)
     #t))
@@ -16,7 +23,7 @@
   (test-equal #t
     (numbered? x)))
 
-(let ((y '(3 o+ (4 ^ 5))))
+(let ((y '(3 o+ (4 o^ 5))))
   (test-equal #t
     (numbered? y)))
 
