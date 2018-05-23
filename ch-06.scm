@@ -15,7 +15,17 @@
 ;; o+, o*, o^ を除いて数だけを含んでいるか
 (define numbered?
   (lambda (aexp)
-    #t))
+    (cond
+     ((atom? aexp) (number? aexp))
+     ((eq? (car (cdr aexp)) 'o+)
+      (and (numbered? (car aexp))
+           (numbered? (car (cdr (cdr aexp))))))
+     ((eq? (car (cdr aexp)) 'o*)
+      (and (numbered? (car aexp))
+           (numbered? (car (cdr (cdr aexp))))))
+     ((eq? (car (cdr aexp)) 'o^)
+      (and (numbered? (car aexp))
+           (numbered? (car (cdr (cdr aexp)))))))))
 
 (test-begin "numbered?-test")
 
