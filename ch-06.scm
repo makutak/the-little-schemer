@@ -46,3 +46,27 @@
     (numbered? y)))
 
 (test-end "numbered?-test")
+
+(define value
+  (lambda (nexp)
+    nexp))
+
+(test-begin "value-test")
+
+(let ((u 13))
+  (test-equal 13
+    (value 13)))
+
+(let ((x '(1 o+ 3)))
+  (test-equal 4
+    (value x)))
+
+(let ((y '(1 o+ (3 o^ 4))))
+  (test-equal 82
+    (value y)))
+
+(let ((z 'cookie))
+  (test-error
+   (value z)))
+
+(test-end "value-test")
