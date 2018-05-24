@@ -127,3 +127,12 @@
     (value-prefix y)))
 
 (test-end "value-prefix-test")
+
+(define sero?
+  (lambda (n)
+    #t))
+
+(test-begin "sero?-test")
+(test-equal #t (sero? '()))
+(test-equal #f (sero? '(())))
+(test-end "sero?-test")
