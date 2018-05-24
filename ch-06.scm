@@ -169,3 +169,17 @@
   (zub1 '(() () ())))
 
 (test-end "zub1-test")
+
+(define .+
+  (lambda (n m)
+    n))
+
+(test-begin ".+-test")
+
+(test-equal '(() ())
+  (.+ '(()) '(())))
+
+(test-equal '(() () ())
+  (.+ '(()) '(() ())))
+
+(test-end ".+-test")
