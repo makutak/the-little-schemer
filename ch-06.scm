@@ -88,3 +88,19 @@
     (value b)))
 
 (test-end "value-test")
+
+(define value-prefix
+  (lambda (nexp)
+    nexp))
+
+(test-begin "value-prefix-test")
+
+(let ((x '(o+ 3 4)))
+  (test-equal 7
+    (value-prefix x)))
+
+(let ((y '(o+ (o* 3 6) (o^ 8 2))))
+  (test-equal 82
+    (value-prefix y)))
+
+(test-end "value-prefix-test")
