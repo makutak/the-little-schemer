@@ -186,3 +186,9 @@
   (.+ '(()) '(() ())))
 
 (test-end ".+-test")
+
+(test-begin "new-number-lat?-test")
+(let ((ls '((()) (() ()) (() () ()))))
+  (test-equal #f
+    (lat? ls)))
+(test-end "new-number-lat?-test")
