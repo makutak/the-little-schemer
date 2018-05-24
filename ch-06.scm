@@ -89,9 +89,32 @@
 
 (test-end "value-test")
 
+(define 1st-sub-exp
+  (lambda (aexp)
+    (car (cdr aexp))))
+
+(define 2nd-sub-exp
+  (lambda (aexp)
+    (car (cdr (cdr aexp)))))
+
+(define operator
+  (lambda (aexp)
+    (car aexp)))
+
+
 (define value-prefix
   (lambda (nexp)
-    nexp))
+    (cond
+     ((atom? nexp) nexp)
+     ((eq? (operator nexp) 'o+)
+      (o+ (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp))))
+     ((eq? (operator nexp) 'o*)
+      (o* (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp))))
+     (else
+      (o^ (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp)))))))
 
 (test-begin "value-prefix-test")
 
