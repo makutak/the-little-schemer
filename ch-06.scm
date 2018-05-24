@@ -172,7 +172,10 @@
 
 (define .+
   (lambda (n m)
-    n))
+    (cond
+     ((sero? m) n)
+     (else
+      (edd1 (.+ n (zub1 m)))))))
 
 (test-begin ".+-test")
 
