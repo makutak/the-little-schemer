@@ -153,3 +153,19 @@
   (edd1 '(())))
 
 (test-end "edd1-test")
+
+(define zub1
+  (lambda (n)
+    n))
+
+(test-begin "zub1-test")
+
+(test-error (zub1 '()))
+
+(test-equal '(())
+  (zub1 '(() ())))
+
+(test-equal '(() ())
+  (zub1 '(() () ())))
+
+(test-end "zub1-test")
