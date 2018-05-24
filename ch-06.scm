@@ -139,11 +139,11 @@
 
 (define edd1
   (lambda (n)
-    n))
+    (cons '() n)))
 
 (test-begin "edd1-test")
 
-(test-equal '()
+(test-equal '(())
   (edd1 '()))
 
 (test-equal '(() () ())
