@@ -130,7 +130,7 @@
 
 (define sero?
   (lambda (n)
-    #t))
+    (null? n)))
 
 (test-begin "sero?-test")
 (test-equal #t (sero? '()))
