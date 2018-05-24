@@ -136,3 +136,20 @@
 (test-equal #t (sero? '()))
 (test-equal #f (sero? '(())))
 (test-end "sero?-test")
+
+(define edd1
+  (lambda (n)
+    n))
+
+(test-begin "edd1-test")
+
+(test-equal '()
+  (edd1 '()))
+
+(test-equal '(() () ())
+  (edd1 '(() ())))
+
+(test-equal '(() ())
+  (edd1 '(())))
+
+(test-end "edd1-test")
