@@ -156,7 +156,7 @@
 
 (define zub1
   (lambda (n)
-    n))
+    (cdr n)))
 
 (test-begin "zub1-test")
 
