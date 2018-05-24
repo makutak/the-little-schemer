@@ -88,3 +88,107 @@
     (value b)))
 
 (test-end "value-test")
+
+(define 1st-sub-exp
+  (lambda (aexp)
+    (car (cdr aexp))))
+
+(define 2nd-sub-exp
+  (lambda (aexp)
+    (car (cdr (cdr aexp)))))
+
+(define operator
+  (lambda (aexp)
+    (car aexp)))
+
+
+(define value-prefix
+  (lambda (nexp)
+    (cond
+     ((atom? nexp) nexp)
+     ((eq? (operator nexp) 'o+)
+      (o+ (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp))))
+     ((eq? (operator nexp) 'o*)
+      (o* (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp))))
+     (else
+      (o^ (value-prefix (1st-sub-exp nexp))
+          (value-prefix (2nd-sub-exp nexp)))))))
+
+(test-begin "value-prefix-test")
+
+(let ((x '(o+ 3 4)))
+  (test-equal 7
+    (value-prefix x)))
+
+(let ((y '(o+ (o* 3 6) (o^ 8 2))))
+  (test-equal 82
+    (value-prefix y)))
+
+(test-end "value-prefix-test")
+
+(define sero?
+  (lambda (n)
+    (null? n)))
+
+(test-begin "sero?-test")
+(test-equal #t (sero? '()))
+(test-equal #f (sero? '(())))
+(test-end "sero?-test")
+
+(define edd1
+  (lambda (n)
+    (cons '() n)))
+
+(test-begin "edd1-test")
+
+(test-equal '(())
+  (edd1 '()))
+
+(test-equal '(() () ())
+  (edd1 '(() ())))
+
+(test-equal '(() ())
+  (edd1 '(())))
+
+(test-end "edd1-test")
+
+(define zub1
+  (lambda (n)
+    (cdr n)))
+
+(test-begin "zub1-test")
+
+(test-error (zub1 '()))
+
+(test-equal '(())
+  (zub1 '(() ())))
+
+(test-equal '(() ())
+  (zub1 '(() () ())))
+
+(test-end "zub1-test")
+
+(define .+
+  (lambda (n m)
+    (cond
+     ((sero? m) n)
+     (else
+      (edd1 (.+ n (zub1 m)))))))
+
+(test-begin ".+-test")
+
+(test-equal '(() ())
+  (.+ '(()) '(())))
+
+(test-equal '(() () ())
+  (.+ '(()) '(() ())))
+
+(test-end ".+-test")
+
+(test-begin "new-number-lat?-test")
+(let ((ls '((()) (() ()) (() () ()))))
+  (test-equal #f
+    (lat? ls)))
+(test-end "new-number-lat?-test")
