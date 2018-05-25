@@ -69,5 +69,8 @@
   (test-equal '(apple peach pear plum lemon)
     (makeset lat)))
 
+(let ((lat '(apple 3 pear 4 9 apple 3 4)))
+  (test-equal '(apple 3 pear 4 9)
+    (makeset lat)))
 
 (test-end "makeset-test2")
