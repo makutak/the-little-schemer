@@ -28,4 +28,8 @@
   (test-equal #t
     (set? lat)))
 
+(let ((lat '(apple 3 pear 4 9 apple 3 4)))
+  (test-equal #f
+    (set? lat)))
+
 (test-end "set?-test")
