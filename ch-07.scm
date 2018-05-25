@@ -8,7 +8,12 @@
 
 (define set?
   (lambda (lat)
-    #t))
+    (cond
+     ((null? lat) #t)
+     ((member? (car lat) (cdr lat)) #f)
+     (else
+      (set? (cdr lat))))))
+
 (test-begin "set?-test")
 
 (let ((lat '(apple peaches apple plum)))
