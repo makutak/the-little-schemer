@@ -52,3 +52,22 @@
 
 
 (test-end "makeset-test")
+
+(define makeset
+  (lambda (lat)
+    (cond
+     ((null? lat) '())
+     (else
+      (cons (car lat)
+            (makeset
+             (multirember (car lat)
+                          (cdr lat))))))))
+
+(test-begin "makeset-test2")
+
+(let ((lat '(apple peach pear peach plum apple lemon peach)))
+  (test-equal '(apple peach pear plum lemon)
+    (makeset lat)))
+
+
+(test-end "makeset-test2")
