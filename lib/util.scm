@@ -8,7 +8,8 @@
             o-
             o*
             o^
-            eqan?))
+            eqan?
+            multirember))
 
 (define atom?
   (lambda (x)
@@ -72,3 +73,13 @@
       #f)
      (else
       (eq? a1 a2)))))
+
+(define multirember
+  (lambda (a lat)
+    (cond
+     ((null? lat) (quote ()))
+     ((eq? (car lat) a)
+      (multirember a (cdr lat)))
+     (else
+      (cons (car lat)
+            (multirember a (cdr lat)))))))
