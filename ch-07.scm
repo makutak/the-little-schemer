@@ -19,4 +19,8 @@
   (test-equal #t
     (set? lat)))
 
+(let ((lat '()))
+  (test-equal #t
+    (set? lat)))
+
 (test-end "set?-test")
