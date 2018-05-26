@@ -78,7 +78,12 @@
 ;;subset: 部分集合
 (define subset?
   (lambda (set1 set2)
-    #t))
+    (cond
+     ((null? set1) #t)
+     ((member? (car set1) set2)
+      (subset? (cdr set1) set2))
+     (else
+      #f))))
 
 (test-begin "subset?-test")
 
