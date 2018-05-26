@@ -74,3 +74,21 @@
     (makeset lat)))
 
 (test-end "makeset-test2")
+
+;;subset: 部分集合
+(define subset?
+  (lambda (set1 set2)
+    #t))
+
+(test-begin "subset?-test")
+
+(let ((set1 '(5 chcken wings))
+      (set2 '(5 hamburgers 2 pieces freid chicken and light duckling wings)))
+  (test-equal #t
+    (subset? set1 set2)))
+
+(let ((set1 '(4 pounds of horseradish))
+      (set2 '(four pounds chcken and 5 ounces horseradish)))
+  (test-equal #f
+    (subset? set1 set2)))
+(test-end "subset?-test")
