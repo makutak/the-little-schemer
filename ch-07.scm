@@ -96,3 +96,20 @@
   (test-equal #f
     (subset? set1 set2)))
 (test-end "subset?-test")
+
+(define eqset?
+  (lambda (set1 set2)
+    #t))
+
+(test-begin "eqset?-test")
+(let ((set1 '(6 large chckens with wings))
+      (set2 '(6 chickens with large wings)))
+  (test-equal #t
+    (eqset? set1 set2)))
+
+(let ((set1 '(6 large chckens with wings hoge))
+      (set2 '(6 chickens with large wings)))
+  (test-equal #f
+    (eqset? set1 set2)))
+
+(test-end "eqset?-test")
