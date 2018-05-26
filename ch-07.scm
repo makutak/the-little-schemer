@@ -86,7 +86,7 @@
 
 (test-begin "subset?-test")
 
-(let ((set1 '(5 chcken wings))
+(let ((set1 '(5 chicken wings))
       (set2 '(5 hamburgers 2 pieces freid chicken and light duckling wings)))
   (test-equal #t
     (subset? set1 set2)))
