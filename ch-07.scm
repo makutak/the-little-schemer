@@ -99,10 +99,11 @@
 
 (define eqset?
   (lambda (set1 set2)
-    #t))
+    (and (subset? set1 set2)
+         (subset? set2 set1))))
 
 (test-begin "eqset?-test")
-(let ((set1 '(6 large chckens with wings))
+(let ((set1 '(6 large chickens with wings))
       (set2 '(6 chickens with large wings)))
   (test-equal #t
     (eqset? set1 set2)))
