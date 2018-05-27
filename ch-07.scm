@@ -138,3 +138,16 @@
     (intersect? set1 set2)))
 
 (test-end "intersect?-test")
+
+(define intersect
+  (lambda (set1 set2)
+    set1))
+
+(test-begin "intersect-test")
+
+(let ((set1 '(stewed tomatoes and macaroni))
+      (set2 '(macaroni and cheese)))
+  (test-equal '(and macaroni)
+    (intersect set1 set2)))
+
+(test-end "intersect-test")
