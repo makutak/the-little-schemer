@@ -114,3 +114,18 @@
     (eqset? set1 set2)))
 
 (test-end "eqset?-test")
+
+;;intersection: 共通部分
+
+(define intersect?
+  (lambda (set1 set2)
+    #t))
+
+(test-begin "intersect?-test")
+
+(let ((set1 '(stewed tomatoes and macaroni))
+      (set2 '(macaroni and cheese)))
+  (test-equal #t
+    (intersect? set1 set2)))
+
+(test-end "intersect?-test")
