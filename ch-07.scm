@@ -181,4 +181,9 @@
   (test-equal '(stewed tomatoes casserole macaroni and cheese)
     (union set1 set2)))
 
+(let ((set1 '())
+      (set2 '(macaroni and cheese)))
+  (test-equal '(macaroni and cheese)
+    (union set1 set2)))
+
 (test-end "union-test")
