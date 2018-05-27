@@ -141,7 +141,13 @@
 
 (define intersect
   (lambda (set1 set2)
-    set1))
+    (cond
+     ((null? set1) '())
+     ((member? (car set1) set2)
+      (cons (car set1)
+            (intersect (cdr set1) set2)))
+     (else
+      (intersect (cdr set1) set2)))))
 
 (test-begin "intersect-test")
 
