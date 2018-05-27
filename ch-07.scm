@@ -132,4 +132,9 @@
   (test-equal #t
     (intersect? set1 set2)))
 
+(let ((set1 '(stewed tomatoes or macaronis))
+      (set2 '(macaroni and cheese)))
+  (test-equal #f
+    (intersect? set1 set2)))
+
 (test-end "intersect?-test")
