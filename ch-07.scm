@@ -187,3 +187,22 @@
     (union set1 set2)))
 
 (test-end "union-test")
+
+(define intersectall
+  (lambda (l-set)
+    l-set))
+
+(test-begin "intersectall-test")
+
+(test-equal '(a)
+  (intersectall '((a b c)
+                  (c a d e)
+                  (e f g h a b))))
+
+(test-equal '(6 and)
+  (intersectall '((6 pears and)
+                  (3 peaches and 6 peppers)
+                  (8 pears and 6 plums)
+                  (and 6 prunes with lots of apples))))
+
+(test-end "intersectall-test")
