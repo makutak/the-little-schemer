@@ -190,7 +190,11 @@
 
 (define intersectall
   (lambda (l-set)
-    l-set))
+    (cond
+     ((null? (cdr l-set)) (car l-set))
+     (else
+      (intersect (car l-set)
+                 (intersectall (cdr l-set)))))))
 
 (test-begin "intersectall-test")
 
