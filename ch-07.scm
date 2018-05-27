@@ -162,3 +162,17 @@
     (intersect set1 set2)))
 
 (test-end "intersect-test")
+
+;;union: 和集合
+(define union
+  (lambda (set1 set2)
+    set2))
+
+(test-begin "union-test")
+
+(let ((set1 '(stewed tomatoes and macaroni casserole))
+      (set2 '(macaroni and cheese)))
+  (test-equal '(stewed tomatoes casserole macaroni and cheese)
+    (union set1 set2)))
+
+(test-end "union-test")
