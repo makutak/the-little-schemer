@@ -214,7 +214,12 @@
 ;;pair: 2つのアトムか2つのS式(アトムかS式のリスト(空でもよい)からなる
 (define a-pair?
   (lambda (x)
-    #t))
+    (cond
+     ((atom? x) #f)
+     ((null? x) #f)
+     ((null? (cdr x)) #f)
+     ((null? (cdr (cdr x))) #t)
+     (else #f))))
 
 (test-begin "a-pair?-test")
 
