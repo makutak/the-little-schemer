@@ -210,3 +210,30 @@
                   (and 6 prunes with lots of apples))))
 
 (test-end "intersectall-test")
+
+;;pair: 2つのアトムか2つのS式(アトムかS式のリスト(空でもよい)からなる
+(define a-pair?
+  (lambda (x)
+    #t))
+
+(test-begin "a-pair?-test")
+
+(test-equal #t
+  (a-pair? '(3 7)))
+
+(test-equal #t
+  (a-pair? '((2) (pair))))
+
+(test-equal #t
+  (a-pair? '(full (hourse))))
+
+(test-equal #f
+  (a-pair? 'hoge))
+
+(test-equal #f
+  (a-pair? '(1 2 3)))
+
+(test-equal #f
+  (a-pair? '(1 '(foo) 'bar)))
+
+(test-end "a-pair?-test")
