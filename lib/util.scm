@@ -9,7 +9,8 @@
             o*
             o^
             eqan?
-            multirember))
+            multirember
+            firsts))
 
 (define atom?
   (lambda (x)
@@ -83,3 +84,11 @@
      (else
       (cons (car lat)
             (multirember a (cdr lat)))))))
+
+(define firsts
+  (lambda (l)
+    (cond
+     ((null? l) (quote ()))
+     (else
+      (cons (car (car l))
+            (firsts (cdr l)))))))
