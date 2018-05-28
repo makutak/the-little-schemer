@@ -242,3 +242,38 @@
   (a-pair? '(1 '(foo) 'bar)))
 
 (test-end "a-pair?-test")
+
+(define first
+  (lambda (p)
+    (car p)))
+
+(define second
+  (lambda (p)
+    (car (cdr p))))
+
+(define third
+  (lambda (p)
+    (car (cdr (cdr p)))))
+
+(define build
+  (lambda (a1 a2)
+    (cons a1
+          (cons a2 '()))))
+
+;;rel: ペアの集合、即ち重複したペアが存在しないペアのリストとの事
+(define fun?
+  (lambda (rel)
+    (set? (firsts rel))))
+
+(test-begin "fun?-test")
+
+(test-equal #f
+  (fun? '((4 3) (4 2) (7 6) (6 2) (3 4))))
+
+(test-equal #t
+  (fun? '((8 3) (4 2) (7 6) (6 2) (3 4))))
+
+(test-equal #f
+  (fun? '((b 4) (b 0) (b 9) (e 5) (g 4))))
+
+(test-end "fun?-test")
