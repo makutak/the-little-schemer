@@ -277,3 +277,12 @@
   (fun? '((b 4) (b 0) (b 9) (e 5) (g 4))))
 
 (test-end "fun?-test")
+
+(define revrel
+  (lambda (rel)
+    rel))
+
+(test-begin "revrel-tets")
+(test-equal '((a 8) (pie pumpkin) (sick got))
+  (revrel '((8 a) (pumpkin pie) (got sick))))
+(test-end "revrel-tets")
