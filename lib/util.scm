@@ -10,7 +10,8 @@
             o^
             eqan?
             multirember
-            firsts))
+            firsts
+            seconds))
 
 (define atom?
   (lambda (x)
@@ -92,3 +93,11 @@
      (else
       (cons (car (car l))
             (firsts (cdr l)))))))
+
+(define seconds
+  (lambda (l)
+    (cond
+     ((null? l) (quote ()))
+     (else
+      (cons (car (cdr (car l)))
+            (seconds (cdr l)))))))
