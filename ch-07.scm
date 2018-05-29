@@ -313,7 +313,7 @@
   (fullfun? '((8 3) (4 2) (7 6) (6 2) (3 4))))
 
 (test-equal #t
-  (fullfun? '((8 3) (4 8) (4 8) (7 6) (3 4))))
+  (fullfun? '((8 3) (4 8) (7 6) (6 2) (3 4))))
 
 (test-equal #f
   (fullfun? '((grape raisin)
