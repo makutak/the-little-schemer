@@ -301,3 +301,28 @@
   (revrel '()))
 
 (test-end "revrel-tets")
+
+;;全単射
+(define fullfun?
+  (lambda (fun)
+    #t))
+
+(test-begin "fullfun?-test")
+
+(test-equal #f
+  (fullfun? '((8 3) (4 2) (7 6) (6 2) (3 4))))
+
+(test-equal #t
+  (fullfun? '((8 3) (4 8) (4 8) (7 6) (3 4))))
+
+(test-equal #f
+  (fullfun? '((grape raisin)
+              (plum prune)
+              (stewed prune))))
+
+(test-equal #t
+  (fullfun? '((grape raisin)
+              (plum prune)
+              (stewed grape))))
+
+(test-end "fullfun?-test")
