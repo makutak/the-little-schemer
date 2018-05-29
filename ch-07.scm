@@ -280,9 +280,20 @@
 
 (define revrel
   (lambda (rel)
-    rel))
+    (cond
+     ((null? rel) '())
+     (else
+      (cons (build
+             (second (car rel))
+             (first (car rel)))
+            (revrel (cdr rel)))))))
 
 (test-begin "revrel-tets")
+
 (test-equal '((a 8) (pie pumpkin) (sick got))
   (revrel '((8 a) (pumpkin pie) (got sick))))
+
+(test-equal '()
+  (revrel '()))
+
 (test-end "revrel-tets")
