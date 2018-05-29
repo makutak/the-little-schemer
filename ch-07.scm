@@ -305,7 +305,7 @@
 ;;全単射
 (define fullfun?
   (lambda (fun)
-    #t))
+    (set? (seconds fun))))
 
 (test-begin "fullfun?-test")
 
