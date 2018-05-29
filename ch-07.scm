@@ -349,4 +349,7 @@
                  (plum prune)
                  (stewed grape))))
 
+(test-equal #t
+  (one-to-one? '((chocolate chip) (doughy cookie))))
+
 (test-end "one-to-one?-test")
