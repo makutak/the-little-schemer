@@ -8,7 +8,10 @@
             o-
             o*
             o^
-            eqan?))
+            eqan?
+            multirember
+            firsts
+            seconds))
 
 (define atom?
   (lambda (x)
@@ -72,3 +75,29 @@
       #f)
      (else
       (eq? a1 a2)))))
+
+(define multirember
+  (lambda (a lat)
+    (cond
+     ((null? lat) (quote ()))
+     ((eq? (car lat) a)
+      (multirember a (cdr lat)))
+     (else
+      (cons (car lat)
+            (multirember a (cdr lat)))))))
+
+(define firsts
+  (lambda (l)
+    (cond
+     ((null? l) (quote ()))
+     (else
+      (cons (car (car l))
+            (firsts (cdr l)))))))
+
+(define seconds
+  (lambda (l)
+    (cond
+     ((null? l) (quote ()))
+     (else
+      (cons (car (cdr (car l)))
+            (seconds (cdr l)))))))
