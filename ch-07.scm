@@ -278,14 +278,18 @@
 
 (test-end "fun?-test")
 
+(define repair
+  (lambda (pair)
+    (build
+     (second pair)
+     (first pair))))
+
 (define revrel
   (lambda (rel)
     (cond
      ((null? rel) '())
      (else
-      (cons (build
-             (second (car rel))
-             (first (car rel)))
+      (cons (repair (car rel))
             (revrel (cdr rel)))))))
 
 (test-begin "revrel-tets")
