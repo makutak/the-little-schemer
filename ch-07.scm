@@ -326,3 +326,27 @@
               (stewed grape))))
 
 (test-end "fullfun?-test")
+
+(define one-to-one?
+  (lambda (fun)
+    (fun? (revrel fun))))
+
+(test-begin "one-to-one?-test")
+
+(test-equal #f
+  (one-to-one? '((8 3) (4 2) (7 6) (6 2) (3 4))))
+
+(test-equal #t
+  (one-to-one? '((8 3) (4 8) (7 6) (6 2) (3 4))))
+
+(test-equal #f
+  (one-to-one? '((grape raisin)
+                 (plum prune)
+                 (stewed prune))))
+
+(test-equal #t
+  (one-to-one? '((grape raisin)
+                 (plum prune)
+                 (stewed grape))))
+
+(test-end "one-to-one?-test")
