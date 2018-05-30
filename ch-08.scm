@@ -24,7 +24,54 @@
 (test-equal '(beans are good)
   (rember-f eq? 'jelly '(jelly beans are good)))
 
-(test-equal '(lemonade (pop corn) and (cake))
+(test-equal '(lemonade and (cake))
   (rember-f equal?? '(pop corn) '(lemonade (pop corn) and (cake))))
 
 (test-end "rember-f-test")
+
+;; memo:
+;;
+;; (lambda (a)
+;;   (lambda (x)
+;;     (eq? x a)))
+;; => 引数としてaを渡されると、
+;;    関数 (lambda (x)
+;;           (eq? x a))
+;;    を返す
+;;    => カリー化と言う。
+
+
+(define eq?-c
+  (lambda (a)
+    (lambda (x)
+      (eq? x a))))
+
+;;kに'saladと名付ける
+(define k 'salad)
+
+;;(eq?-c k)という処理にeq?-saladと名付ける
+(define eq?-salad (eq?-c k))
+
+(test-begin "eq?-salad-test")
+
+(define y 'salad)
+
+(test-equal #t
+  (eq?-salad y))
+
+(define y 'tuna)
+
+(test-equal #f
+  (eq?-salad y))
+
+(test-end "eq?-salad-test")
+
+;;上記のことは、下記でできる
+(let ((x 'salad)
+      (y 'tuna))
+  ((eq?-c x) y))
+
+(test-begin "eq?-c-test")
+(test-equal #f
+  ((eq?-c 'salad) 'tuna))
+(test-begin "eq?-c-test")
