@@ -74,7 +74,7 @@
 (test-begin "eq?-c-test")
 (test-equal #f
   ((eq?-c 'salad) 'tuna))
-(test-begin "eq?-c-test")
+(test-end "eq?-c-test")
 
 
 (define rember-f
