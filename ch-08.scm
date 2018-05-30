@@ -6,7 +6,7 @@
 
 (set! test-log-to-file #f)
 
-(define rember-f
+(define rember-f-not-curry
   (lambda (test? a l)
     (cond
      ((null? a) '())
@@ -14,20 +14,20 @@
       (cdr l))
      (else
       (cons (car l)
-            (rember-f test? a (cdr l)))))))
+            (rember-f-not-curry test? a (cdr l)))))))
 
-(test-begin "rember-f-test")
+(test-begin "rember-f-not-curry-test")
 
 (test-equal '(6 2 3)
-  (rember-f = 5 '(6 2 5 3)))
+  (rember-f-not-curry = 5 '(6 2 5 3)))
 
 (test-equal '(beans are good)
-  (rember-f eq? 'jelly '(jelly beans are good)))
+  (rember-f-not-curry eq? 'jelly '(jelly beans are good)))
 
 (test-equal '(lemonade and (cake))
-  (rember-f equal?? '(pop corn) '(lemonade (pop corn) and (cake))))
+  (rember-f-not-curry equal?? '(pop corn) '(lemonade (pop corn) and (cake))))
 
-(test-end "rember-f-test")
+(test-end "rember-f-not-curry-test")
 
 ;; memo:
 ;;
