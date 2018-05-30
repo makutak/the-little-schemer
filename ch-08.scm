@@ -99,4 +99,10 @@
 (test-equal '(lemonade and (cake))
   ((rember-f equal??) '(pop corn) '(lemonade (pop corn) and (cake))))
 
+(test-equal '(shrimp salad and salad)
+  ((rember-f eq?) 'tuna '(shrimp salad and tuna salad)))
+
+(test-equal '(equal? eqan? eqlist? eqpair?)
+  ((rember-f eq?) 'eq? '(equal? eq? eqan? eqlist? eqpair?)))
+
 (test-end "curry-rember-f-test")
