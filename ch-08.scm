@@ -75,3 +75,22 @@
 (test-equal #f
   ((eq?-c 'salad) 'tuna))
 (test-begin "eq?-c-test")
+
+
+(define rember-f
+  (lambda (test?)
+    (lambda (a l)
+      "curry")))
+
+(test-begin "curry-rember-f-test")
+
+(test-equal '(6 2 3)
+  ((rember-f =) 5 '(6 2 5 3)))
+
+(test-equal '(beans are good)
+  ((rember-f eq?) 'jelly '(jelly beans are good)))
+
+(test-equal '(lemonade and (cake))
+  ((rember-f equal??) '(pop corn) '(lemonade (pop corn) and (cake))))
+
+(test-end "curry-rember-f-test")
