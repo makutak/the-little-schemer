@@ -8,7 +8,13 @@
 
 (define rember-f
   (lambda (test? a l)
-    "rember-f"))
+    (cond
+     ((null? a) '())
+     ((test? (car l) a)
+      (cdr l))
+     (else
+      (cons (car l)
+            (rember-f test? a (cdr l)))))))
 
 (test-begin "rember-f-test")
 
