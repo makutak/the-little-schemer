@@ -141,7 +141,16 @@
 
 (define insertR-f
   (lambda (test?)
-    "insertR-f"))
+    (lambda (new old l)
+      (cond
+       ((null? l) '())
+       ((test? (car l) old)
+        (cons old
+              (cons new
+                    (cdr l))))
+       (else
+        (cons (car l)
+              ((insertR-f test?) new old (cdr l))))))))
 
 (test-begin "insertR-f-test")
 
@@ -152,9 +161,6 @@
   ((insertR-f eq?) 'jalapeno 'and '(tacos tamales and sals)))
 
 (test-equal '(2 3 4 1 99 10)
-  ((insertR-f =) 99 1 '(2 3 4 1 10)))
-
-(test-equal '(2 3 4 99 1 10)
   ((insertR-f =) 99 1 '(2 3 4 1 10)))
 
 (test-equal '(lemonade (pop corn) (foo bar) and (cake))
