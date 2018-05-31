@@ -138,3 +138,26 @@
   ((insertL-f equal??) '(foo bar)'(pop corn) '(lemonade (pop corn) and (cake))))
 
 (test-end "insertL-f-test")
+
+(define insertR-f
+  (lambda (test?)
+    "insertR-f"))
+
+(test-begin "insertR-f-test")
+
+(test-equal '(ice cream with fudge topping for dessert)
+  ((insertR-f eq?) 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales and jalapeno sals)
+  ((insertR-f eq?) 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-equal '(2 3 4 1 99 10)
+  ((insertR-f =) 99 1 '(2 3 4 1 10)))
+
+(test-equal '(2 3 4 99 1 10)
+  ((insertR-f =) 99 1 '(2 3 4 1 10)))
+
+(test-equal '(lemonade (pop corn) (foo bar) and (cake))
+  ((insertR-f equal??) '(foo bar)'(pop corn) '(lemonade (pop corn) and (cake))))
+
+(test-end "insertR-f-test")
