@@ -106,3 +106,35 @@
   ((rember-f eq?) 'eq? '(equal? eq? eqan? eqlist? eqpair?)))
 
 (test-end "curry-rember-f-test")
+
+(define insertL-f
+  (lambda (test?)
+    (lambda (new old l)
+      (cond
+       ((null? l) '())
+       ((test? (car l) old)
+        (cons new
+              (cons old
+                    (cdr l))))
+       (else
+        (cons (car l)
+              ((insertL-f test?) new old (cdr l))))))))
+
+(test-begin "insertL-f-test")
+
+(test-equal '(ice cream with topping fudge for dessert)
+  ((insertL-f eq?) 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales jalapeno and sals)
+  ((insertL-f eq?) 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-equal '(2 3 4 99 1 10)
+  ((insertL-f =) 99 1 '(2 3 4 1 10)))
+
+(test-equal '(2 3 4 99 1 10)
+  ((insertL-f =) 99 1 '(2 3 4 1 10)))
+
+(test-equal '(lemonade (foo bar) (pop corn) and (cake))
+  ((insertL-f equal??) '(foo bar)'(pop corn) '(lemonade (pop corn) and (cake))))
+
+(test-end "insertL-f-test")
