@@ -167,3 +167,55 @@
   ((insertR-f equal??) '(foo bar)'(pop corn) '(lemonade (pop corn) and (cake))))
 
 (test-end "insertR-f-test")
+
+;;上記関数は重複している箇所が多いので、まとめたい。
+;;どこに挿入するかの箇所だけが違う。
+;; new old l を受取り、適切なconsを実行する関数を作る。
+
+(define seqL
+  (lambda (new old l)
+    (cons new
+          (cons old l))))
+
+(define seqR
+  (lambda (new old l)
+    (cons old
+          (cons new l))))
+
+;;これらの関数を受け取る関数を作る。
+
+(define insert-g
+  (lambda (seq)
+    (lambda (new old l)
+      (cond
+       ((null? l) '())
+       ((eq? (car l) old)
+        (seq new old (cdr l)))
+       (else
+        (cons (car l)
+              ((insert-g seq) new old (cdr l))))))))
+
+(define insertL
+  (insert-g seqL))
+
+(test-begin "insert-L-test")
+(test-equal '(ice cream with topping fudge for dessert)
+  (insertL 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales jalapeno and sals)
+  (insertL 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-end "insert-L-test")
+
+
+(define insertR
+  (insert-g seqR))
+
+(test-begin "insert-R-test")
+(test-equal '(ice cream with fudge topping for dessert)
+  (insertR 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales and jalapeno sals)
+  (insertR 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-end "insert-R-test")
