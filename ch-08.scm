@@ -219,3 +219,15 @@
   (insertR 'jalapeno 'and '(tacos tamales and sals)))
 
 (test-end "insert-R-test")
+
+(define seqS
+  (lambda (new old l)
+    (cons new l)))
+
+(define susbst
+  (insert-g seqS))
+
+(test-begin "subst-test")
+(test-equal '(ice cream with topping for dessert)
+  (subst 'topping 'fudge '(ice cream with fudge for dessert)))
+(test-end "subst-test")
