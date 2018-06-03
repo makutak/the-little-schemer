@@ -263,3 +263,16 @@
 (test-equal '(ice cream with topping for dessert)
   (subst 'topping 'fudge '(ice cream with fudge for dessert)))
 (test-end "subst-test")
+
+(define seqrem
+  (lambda (new old l)
+    l))
+
+(define rember2
+  (lambda (a l)
+    ((insert-g seqrem) #f a l)))
+
+(test-begin "rember2-test")
+(test-equal '(pizza with and bacon)
+  (rember2 'sausage '(pizza with sausage and bacon)))
+(test-end "rember2-test")
