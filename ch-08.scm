@@ -220,6 +220,38 @@
 
 (test-end "insert-R-test")
 
+(define insertL
+  (insert-g
+   (lambda (new old l)
+     (cons new
+           (cons  old
+                  l)))))
+
+(test-begin "insert-L-not-seqL-test")
+(test-equal '(ice cream with topping fudge for dessert)
+  (insertL 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales jalapeno and sals)
+  (insertL 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-end "insert-L-not-seqL-test")
+
+(define insertR
+  (insert-g
+   (lambda (new old l)
+     (cons old
+           (cons new
+                 l)))))
+
+(test-begin "insert-R-not-seqR-test")
+(test-equal '(ice cream with fudge topping for dessert)
+  (insertR 'topping 'fudge '(ice cream with fudge for dessert)))
+
+(test-equal '(tacos tamales and jalapeno sals)
+  (insertR 'jalapeno 'and '(tacos tamales and sals)))
+
+(test-end "insert-R-not-seqR-test")
+
 (define seqS
   (lambda (new old l)
     (cons new l)))
