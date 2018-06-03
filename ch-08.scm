@@ -224,7 +224,7 @@
   (lambda (new old l)
     (cons new l)))
 
-(define susbst
+(define subst
   (insert-g seqS))
 
 (test-begin "subst-test")
