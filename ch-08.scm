@@ -302,3 +302,32 @@
     (value y)))
 
 (test-end "value-test")
+
+(define atom-to-function
+  (lambda (x)
+    (cond
+     ((eq? x 'o+) o+)
+     ((eq? x 'o*) o*)
+     (else o^))))
+
+(define value2
+  (lambda (nexp)
+    (cond
+     ((atom? nexp) nexp)
+     (else
+      ((atom-to-function
+        (operator nexp))
+       (value2 (1st-sub-exp nexp))
+       (value2 (2nd-sub-exp nexp)))))))
+
+(test-begin "value2-test")
+
+(let ((x '(o+ 3 4)))
+  (test-equal 7
+    (value2 x)))
+
+(let ((y '(o+ (o* 3 6) (o^ 8 2))))
+  (test-equal 82
+    (value2 y)))
+
+(test-end "value2-test")
