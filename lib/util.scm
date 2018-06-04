@@ -13,7 +13,10 @@
             firsts
             seconds
             eqlist?
-            equal??))
+            equal??
+            1st-sub-exp
+            2nd-sub-exp
+            operator))
 
 (define atom?
   (lambda (x)
@@ -130,3 +133,16 @@
       #f)
      (else
       (eqlist? s1 s2)))))
+
+
+(define 1st-sub-exp
+  (lambda (aexp)
+    (car (cdr aexp))))
+
+(define 2nd-sub-exp
+  (lambda (aexp)
+    (car (cdr (cdr aexp)))))
+
+(define operator
+  (lambda (aexp)
+    (car aexp)))

@@ -276,3 +276,29 @@
 (test-equal '(pizza with and bacon)
   (rember2 'sausage '(pizza with sausage and bacon)))
 (test-end "rember2-test")
+
+(define value
+  (lambda (nexp)
+    (cond
+     ((atom? nexp) nexp)
+     ((eq? (operator nexp) 'o+)
+      (o+ (value (1st-sub-exp nexp))
+          (value (2nd-sub-exp nexp))))
+     ((eq? (operator nexp) 'o*)
+      (o* (value (1st-sub-exp nexp))
+          (value (2nd-sub-exp nexp))))
+     (else
+      (o^ (value (1st-sub-exp nexp))
+          (value (2nd-sub-exp nexp)))))))
+
+(test-begin "value-test")
+
+(let ((x '(o+ 3 4)))
+  (test-equal 7
+    (value x)))
+
+(let ((y '(o+ (o* 3 6) (o^ 8 2))))
+  (test-equal 82
+    (value y)))
+
+(test-end "value-test")
