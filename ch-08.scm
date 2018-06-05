@@ -334,7 +334,14 @@
 
 (define multirember-f
   (lambda (test?)
-    #f))
+    (lambda (a lat)
+      (cond
+       ((null? lat) '())
+       ((test? (car lat) a)
+        ((multirember-f test?) a (cdr lat)))
+       (else
+        (cons (car lat)
+              ((multirember-f test?) a  (cdr lat))))))))
 
 (test-begin "multirember-f-test")
 (test-equal '(shrimp salad salad and)
