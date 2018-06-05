@@ -331,3 +331,12 @@
     (value2 y)))
 
 (test-end "value2-test")
+
+(define multirember-f
+  (lambda (test?)
+    #f))
+
+(test-begin "multirember-f-test")
+(test-equal '(shrimp salad salad and)
+  ((multirember-f eq?) 'tuna '(shrimp salad tuna salad and tuna)))
+(test-end "multirember-f-test")
