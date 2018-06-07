@@ -347,3 +347,24 @@
 (test-equal '(shrimp salad salad and)
   ((multirember-f eq?) 'tuna '(shrimp salad tuna salad and tuna)))
 (test-end "multirember-f-test")
+
+(define multirember-eq
+  (multirember-f eq?))
+
+(define eq?-tuna
+  (eq?-c 'tuna))
+
+(define multiremberT
+  (lambda (test? lat)
+    (cond
+     ((null? lat) '())
+     ((test? (car lat))
+      (multiremberT test? (cdr lat)))
+     (else
+      (cons (car lat)
+            (multiremberT test? (cdr lat)))))))
+
+(test-begin "multiremberT-test")
+(test-equal '(shrimp salad salad and)
+  (multiremberT eq?-tuna '(shrimp salad tuna salad and tuna)))
+(test-end "multiremberT-test")
