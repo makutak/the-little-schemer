@@ -390,3 +390,19 @@
 (define a-friend
   (lambda (x y)
     (null? y)))
+
+(test-begin "a-friend-test")
+(test-equal #f
+  (multirember&co 'tuna
+                  '(strawberries tuna and swordfish)
+                  a-friend))
+(test-equal #t
+  (multirember&co 'tuna
+                  '()
+                  a-friend))
+
+(test-equal #f
+  (multirember&co 'tuna
+                  '(tuna)
+                  a-friend))
+(test-end "a-friend-test")
