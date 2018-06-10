@@ -406,3 +406,25 @@
                   '(tuna)
                   a-friend))
 (test-end "a-friend-test")
+
+(define new-frend
+  (lambda (newlat seen)
+    (a-friend newlat
+              (cons 'tuna seen))))
+
+(test-begin "new-friend-test")
+(test-equal #f
+  (new-frend '() '()))
+(test-end "new-friend-test")
+
+(define latest-friend
+  (lambda (newlat seen)
+    (a-friend (cons 'and newlat)
+              seen)))
+
+(test-begin "latest-friend-test")
+(test-equal #f
+  ((lambda (newlat seen)
+       (latest-friend newlat
+                      (cons 'tuna seen))) '() '()))
+(test-end "latest-friend-test")
