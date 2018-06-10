@@ -437,3 +437,34 @@
 (test-equal 3
   (multirember&co 'tuna '(strawberries tuna and swordfish) last-friend))
 (test-end "last-friend-test")
+
+(define multiinsertLR
+  (lambda (new oldL oldR lat)
+    (cond
+     ((null? lat) '())
+     ((eq? (car lat) oldL)
+      (cons new
+            (cons oldL
+                  (multiinsertLR new oldL oldR (cdr lat)))))
+     ((eq? (car lat) oldR)
+      (cons oldR
+            (cons new
+                  (multiinsertLR new oldL oldR (cdr lat)))))
+     (else
+      (cons (car lat)
+            (multiinsertLR new oldL oldR (cdr lat)))))))
+
+(test-begin "multiinsertLR-test")
+(test-equal '(foo coffee cup tea foo cup and hick cup)
+  (multiinsertLR 'foo 'coffee 'tea '(coffee cup tea cup and hick cup)))
+
+(test-equal '(coffee cup foo tea cup foo and hick cup foo)
+  (multiinsertLR 'foo 'hoge 'cup '(coffee cup tea cup and hick cup)))
+
+(test-equal '(coffee foo cup tea foo cup and hick foo cup)
+  (multiinsertLR 'foo 'cup 'hoge '(coffee cup tea cup and hick cup)))
+
+(test-equal '(coffee cup tea cup and hick cup)
+  (multiinsertLR 'foo 'hoge 'fuga '(coffee cup tea cup and hick cup)))
+
+(test-end "multiinsertLR-test")
