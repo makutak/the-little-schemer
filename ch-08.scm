@@ -470,29 +470,35 @@
 
 (test-end "multiinsertLR-test")
 
-(define multiinsertLR&col
+(define multiinsertLR&co
   (lambda (new oldL oldR lat col)
     (cond
      ((null? lat)
       (col '() 0 0))
      ((eq? (car lat) oldL)
-      (multiinsertLR&col new
+      (multiinsertLR&co new
                          oldL
                          oldR
                          (cdr lat)
                          (lambda (newlat L R)
-                           ...)))
+                           (col (cons new
+                                      (cons oldL newlat))
+                                (add1 L) R))))
      ((eq? (car lat) oldR)
-      (multiinsertLR&col new
+      (multiinsertLR&co new
                          oldL
                          oldR
                          (cdr lat)
                          (lambda (newlat L R)
-                           ...)))
+                           (col (cons oldR
+                                      (cons new newlat))
+                                L (add1 R)))))
      (else
-      (multiinsertLR&col new
+      (multiinsertLR&co new
                          oldL
                          oldR
                          (cdr lat)
-                         (lambda (newlat L R))
-                         ...)))))
+                         (lambda (newlat L R)
+                           (col (cons (car lat) newlat)
+                                L
+                                R)))))))
