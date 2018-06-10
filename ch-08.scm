@@ -469,3 +469,30 @@
   (multiinsertLR 'foo 'hoge 'fuga '(coffee cup tea cup and hick cup)))
 
 (test-end "multiinsertLR-test")
+
+(define multiinsertLR&col
+  (lambda (new oldL oldR lat col)
+    (cond
+     ((null? lat)
+      (col '() 0 0))
+     ((eq? (car lat) oldL)
+      (multiinsertLR&col new
+                         oldL
+                         oldR
+                         (cdr lat)
+                         (lambda (newlat L R)
+                           ...)))
+     ((eq? (car lat) oldR)
+      (multiinsertLR&col new
+                         oldL
+                         oldR
+                         (cdr lat)
+                         (lambda (newlat L R)
+                           ...)))
+     (else
+      (multiinsertLR&col new
+                         oldL
+                         oldR
+                         (cdr lat)
+                         (lambda (newlat L R))
+                         ...)))))
