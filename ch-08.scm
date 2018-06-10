@@ -455,6 +455,7 @@
             (multiinsertLR new oldL oldR (cdr lat)))))))
 
 (test-begin "multiinsertLR-test")
+
 (test-equal '(foo coffee cup tea foo cup and hick cup)
   (multiinsertLR 'foo 'coffee 'tea '(coffee cup tea cup and hick cup)))
 
