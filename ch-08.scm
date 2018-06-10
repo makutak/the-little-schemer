@@ -428,3 +428,12 @@
        (latest-friend newlat
                       (cons 'tuna seen))) '() '()))
 (test-end "latest-friend-test")
+
+(define last-friend
+  (lambda (x y)
+    (length x)))
+
+(test-begin "last-friend-test")
+(test-equal 3
+  (multirember&co 'tuna '(strawberries tuna and swordfish) last-friend))
+(test-end "last-friend-test")
