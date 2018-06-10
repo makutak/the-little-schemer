@@ -502,3 +502,31 @@
                            (col (cons (car lat) newlat)
                                 L
                                 R)))))))
+
+(test-begin "multiinsertLR*co-test")
+
+;;新しく作られたリストを返す
+(test-equal '(chips salty and salty fish or salty fish and chips salty)
+  (multiinsertLR&co 'salty
+                    'fish
+                    'chips
+                    '(chips and fish or fish and chips)
+                    (lambda (newlat L R) newlat)))
+
+;;newがoldLに一致した回数を返す
+(test-equal 2
+  (multiinsertLR&co 'salty
+                    'fish
+                    'chips
+                    '(chips and fish or fish and chips)
+                    (lambda (newlat L R) L)))
+
+;;newがoldRに一致した回数を返す
+(test-equal 2
+  (multiinsertLR&co 'salty
+                    'fish
+                    'chips
+                    '(chips and fish or fish and chips)
+                    (lambda (newlat L R) R)))
+
+(test-end "multiinsertLR*co-test")
