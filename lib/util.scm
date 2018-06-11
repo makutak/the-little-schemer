@@ -16,7 +16,8 @@
             equal??
             1st-sub-exp
             2nd-sub-exp
-            operator))
+            operator
+            even?))
 
 (define atom?
   (lambda (x)
@@ -146,3 +147,7 @@
 (define operator
   (lambda (aexp)
     (car aexp)))
+
+(define even?
+  (lambda (n)
+    (= (* (/ n 2) 2) n)))
