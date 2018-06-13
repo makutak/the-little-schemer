@@ -537,7 +537,7 @@
      ((null? l) '())
      ((atom? (car l))
       (cond
-       ((even? (car l))
+       ((even?? (car l))
         (cons (car l)
               (evens-only* (cdr l))))
        (else (evens-only* (cdr l)))))
