@@ -8,6 +8,10 @@
             o-
             o*
             o^
+            o<
+            o>
+            o=
+            o/
             eqan?
             multirember
             firsts
@@ -17,7 +21,7 @@
             1st-sub-exp
             2nd-sub-exp
             operator
-            even?))
+            even??))
 
 (define atom?
   (lambda (x)
@@ -71,6 +75,36 @@
      ((zero? m) 1)
      (else
       (o* n (o^ n (sub1 m)))))))
+
+(define o>
+  (lambda (n m)
+    (cond
+     ((zero? n) #f)
+     ((zero? m) #t)
+     (else
+      (o> (sub1 n) (sub1 m))))))
+
+(define o<
+  (lambda (n m)
+    (cond
+     ((zero? m) #f)
+     ((zero? n) #t)
+     (else
+      (o< (sub1 n) (sub1 m))))))
+
+(define o=
+  (lambda (n m)
+    (cond
+     ((o> n m) #f)
+     ((o< n m) #f)
+     (else #t))))
+
+(define o/
+  (lambda (n m)
+    (cond
+     ((o< n m) 0)
+     (else
+      (add1 (o/ (o- n m) m))))))
 
 (define eqan?
   (lambda (a1 a2)
@@ -148,6 +182,6 @@
   (lambda (aexp)
     (car aexp)))
 
-(define even?
+(define even??
   (lambda (n)
-    (= (* (/ n 2) 2) n)))
+    (o= (o* (o/ n 2) 2) n)))
