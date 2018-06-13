@@ -8,10 +8,20 @@
             o-
             o*
             o^
+            o<
+            o>
+            o=
+            o/
             eqan?
             multirember
             firsts
-            seconds))
+            seconds
+            eqlist?
+            equal??
+            1st-sub-exp
+            2nd-sub-exp
+            operator
+            even??))
 
 (define atom?
   (lambda (x)
@@ -66,6 +76,36 @@
      (else
       (o* n (o^ n (sub1 m)))))))
 
+(define o>
+  (lambda (n m)
+    (cond
+     ((zero? n) #f)
+     ((zero? m) #t)
+     (else
+      (o> (sub1 n) (sub1 m))))))
+
+(define o<
+  (lambda (n m)
+    (cond
+     ((zero? m) #f)
+     ((zero? n) #t)
+     (else
+      (o< (sub1 n) (sub1 m))))))
+
+(define o=
+  (lambda (n m)
+    (cond
+     ((o> n m) #f)
+     ((o< n m) #f)
+     (else #t))))
+
+(define o/
+  (lambda (n m)
+    (cond
+     ((o< n m) 0)
+     (else
+      (add1 (o/ (o- n m) m))))))
+
 (define eqan?
   (lambda (a1 a2)
     (cond
@@ -101,3 +141,47 @@
      (else
       (cons (car (cdr (car l)))
             (seconds (cdr l)))))))
+
+(define eqlist?
+  (lambda (l1 l2)
+    (cond
+     ((and (null? l1) (null? l2))
+      #t)
+     ((or (null? l1) (null? l2))
+      #f)
+     ((and (atom? (car l1)) (atom? (car l2)))
+      (and (eqan? (car l1) (car l2))
+           (eqlist? (cdr l1) (cdr l2))))
+     ((or (atom? (car l1)) (atom? (car l2)))
+      #f)
+     (else
+      (and
+       (eqlist? (car l1) (car l2))
+       (eqlist? (cdr l1) (cdr l2)))))))
+
+(define equal??
+  (lambda (s1 s2)
+    (cond
+     ((and (atom? s1) (atom? s2))
+      (eqan? s1 s2))
+     ((or (atom? s1) (atom? s2))
+      #f)
+     (else
+      (eqlist? s1 s2)))))
+
+
+(define 1st-sub-exp
+  (lambda (aexp)
+    (car (cdr aexp))))
+
+(define 2nd-sub-exp
+  (lambda (aexp)
+    (car (cdr (cdr aexp)))))
+
+(define operator
+  (lambda (aexp)
+    (car aexp)))
+
+(define even??
+  (lambda (n)
+    (o= (o* (o/ n 2) 2) n)))
