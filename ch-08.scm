@@ -549,3 +549,41 @@
 (test-equal '((2 8) 10 (() 6) 2)
   (evens-only* '((9 1 2 8) 3 10 ((9 9) 7 6) 2)))
 (test-end "evens-only*-test")
+
+(define evens-only*&col
+  (lambda (l col)
+    (cond
+     ((null? l)
+      (col '() 1 0))
+     ((atom? (car  l))
+      (cond
+       ((even?? (car l))
+        (evens-only*&col (cdr l)
+                         (lambda (newl p s)
+                           (col (cons (car l) newl)
+                                (o* (car l) p) s))))
+       (else
+        (evens-only*&col (cdr l)
+                         (lambda (newl p s)
+                           (col newl
+                                p (o+ (car l) s)))))))
+     (else
+      (evens-only*&col (car l)
+                       (lambda (al ap as)
+                         (evens-only*&col (cdr l)
+                                          (lambda (dl dp ds)
+                                            (col (cons al dl)
+                                                 (o* ap dp)
+                                                 (o+ as ds))))))))))
+
+(define the-last-friend
+  (lambda (newl product sum)
+    (cons sum
+          (cons product
+                newl))))
+
+(test-begin "evens-only*&col-test")
+(test-equal '(38 1920 (2 8) 10 (() 6) 2)
+  (evens-only*&col '((9 1 2 8) 3 10 ((9 9) 7 6) 2)
+                   the-last-friend))
+(test-end "evens-only*&col-test")
