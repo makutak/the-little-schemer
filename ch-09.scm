@@ -7,14 +7,18 @@
 (set! test-log-to-file #f)
 
 (define keep-looking
-  (lambda ()
-    #t))
+  (lambda (a sorn lat)
+    (cond
+     ((number? sorn)
+      (keep-looking a (pick sorn lat) lat))
+     (else
+      (eq? sorn a)))))
 
 (test-begin "keep-looking-test")
 (test-equal #t
   (keep-looking 'caviar
                 3
-                (6 2 4 caviar 5 7 3)))
+                '(6 2 4 caviar 5 7 3)))
 (test-end "keep-looking-test")
 
 (define looking
