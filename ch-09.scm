@@ -6,11 +6,23 @@
 
 (set! test-log-to-file #f)
 
-(define looking
-  (lambda (a lat)
+(define keep-looking
+  (lambda ()
     #t))
 
+(test-begin "keep-looking-test")
+(test-equal #t
+  (keep-looking 'caviar
+                3
+                (6 2 4 caviar 5 7 3)))
+(test-end "keep-looking-test")
+
+(define looking
+  (lambda (a lat)
+    (keep-looking a (pick 1 lat) lat)))
+
 (test-begin "looking-test")
+
 (test-equal #t
   (looking 'caviar
            '(6 2 4 caviar 5 7 3)))
