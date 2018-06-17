@@ -30,4 +30,9 @@
 (test-equal #f
   (looking 'caviar
            '(6 2 grits caviar 5 7 3)))
+
+(test-equal #t
+  (looking 'caviar
+           '(6 2 4 caviar 5 7 3)))
+
 (test-end "looking-test")
