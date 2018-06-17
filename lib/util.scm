@@ -21,7 +21,8 @@
             1st-sub-exp
             2nd-sub-exp
             operator
-            even??))
+            even??
+            pick))
 
 (define atom?
   (lambda (x)
@@ -185,3 +186,11 @@
 (define even??
   (lambda (n)
     (o= (o* (o/ n 2) 2) n)))
+
+(define pick
+  (lambda (n lat)
+    (cond
+     ((zero? (sub1 n))
+      (car lat))
+     (else
+      (pick (sub1 n) (cdr lat))))))
