@@ -46,3 +46,17 @@
 (define eternity
   (lambda (x)
     (eternity x)))
+
+(define shift
+  (lambda (x)
+    x))
+
+(test-begin "shift-test")
+
+(test-equal '(a (b c))
+  (shift '((a b) c)))
+
+(test-equal '(a (b (c d)))
+  (shift '((a b) (c d))))
+
+(test-end "shift-test")
