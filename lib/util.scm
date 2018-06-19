@@ -22,7 +22,10 @@
             2nd-sub-exp
             operator
             even??
-            pick))
+            pick
+            first
+            second
+            build))
 
 (define atom?
   (lambda (x)
@@ -194,3 +197,16 @@
       (car lat))
      (else
       (pick (sub1 n) (cdr lat))))))
+
+(define first
+  (lambda (p)
+    (car p)))
+
+(define second
+  (lambda (p)
+    (car (cdr p))))
+
+(define build
+  (lambda (a1 a2)
+    (cons a1
+          (cons a2 '()))))
