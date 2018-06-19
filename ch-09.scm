@@ -73,3 +73,11 @@
       (build (first para)
              (align (second para)))))))
 ;;=> cond でshiftはalignのために引数を生成するが、それは元の引数の一部分ではない。
+
+(define length*
+  (lambda (para)
+    (cond
+     ((atom? para) 1)
+     (else
+      (o+ (length* (first para))
+          (length* (second para)))))))
