@@ -72,3 +72,4 @@
      (else
       (build (first para)
              (align (second para)))))))
+;;=> cond でshiftはalignのために引数を生成するが、それは元の引数の一部分ではない。
