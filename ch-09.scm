@@ -81,3 +81,21 @@
      (else
       (o+ (length* (first para))
           (length* (second para)))))))
+
+(define weight*
+  (lambda (para)
+    (cond
+     ((atom? para) 1)
+     (else
+      (o+ (o* (weight* (first para)) 2)
+          (weight* (second para)))))))
+
+(test-begin "weight*-test")
+
+(test-equal 7
+  (weight* '((a b) c)))
+
+(test-equal 5
+  (weight* '(a (b c))))
+
+(test-end "weight*-test")
