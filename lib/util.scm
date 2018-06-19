@@ -25,7 +25,8 @@
             pick
             first
             second
-            build))
+            build
+            a-pair?))
 
 (define atom?
   (lambda (x)
@@ -210,3 +211,12 @@
   (lambda (a1 a2)
     (cons a1
           (cons a2 '()))))
+
+(define a-pair?
+  (lambda (x)
+    (cond
+     ((atom? x) #f)
+     ((null? x) #f)
+     ((null? (cdr x)) #f)
+     ((null? (cdr (cdr x))) #t)
+     (else #f))))
