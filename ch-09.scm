@@ -62,3 +62,13 @@
   (shift '((a b) (c d))))
 
 (test-end "shift-test")
+
+(define align
+  (lambda (para)
+    (cond
+     ((atom? para) para)
+     ((a-pair? (first para))
+      (align (shift para)))
+     (else
+      (build (first para)
+             (align (second para)))))))
