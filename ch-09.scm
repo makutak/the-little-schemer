@@ -42,3 +42,7 @@
            '(6 2 4 caviar 5 7 3)))
 
 (test-end "looking-test")
+
+(define eternity
+  (lambda (x)
+    (eternity x)))
