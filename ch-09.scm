@@ -48,8 +48,10 @@
     (eternity x)))
 
 (define shift
-  (lambda (x)
-    x))
+  (lambda (pair)
+    (build (first (first pair))
+           (build (second (first pair))
+                  (second pair)))))
 
 (test-begin "shift-test")
 
