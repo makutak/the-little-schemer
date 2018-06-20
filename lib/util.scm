@@ -26,7 +26,8 @@
             first
             second
             build
-            a-pair?))
+            a-pair?
+            revpair))
 
 (define atom?
   (lambda (x)
@@ -220,3 +221,9 @@
      ((null? (cdr x)) #f)
      ((null? (cdr (cdr x))) #t)
      (else #f))))
+
+(define revpair
+  (lambda (pair)
+    (build
+     (second pair)
+     (first pair))))
