@@ -99,3 +99,26 @@
   (weight* '(a (b c))))
 
 (test-end "weight*-test")
+
+(define shuffle
+  (lambda (para)
+    (cond
+     ((atom? para) para)
+     ((a-pair? (first para))
+      (shuffle (revpair para)))
+     (else
+      (build (first para)
+             (shuffle (second para)))))))
+
+(test-begin "shuffle-test")
+
+(test-equal '(a (b c))
+  (shuffle '(a (b c))))
+
+(test-equal '(a b)
+  (shuffle '(a b)))
+
+(test-equal '((a b) (c d))
+  (shuffle '((a b) (c d))))
+
+(test-end "shuffle-test")
