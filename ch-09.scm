@@ -66,7 +66,8 @@
 (define align
   (lambda (para)
     (cond
-     ((atom? para) para)
+     ((atom? para)
+      para)
      ((a-pair? (first para))
       (align (shift para)))
      (else
@@ -103,7 +104,8 @@
 (define shuffle
   (lambda (para)
     (cond
-     ((atom? para) para)
+     ((atom? para)
+      para)
      ((a-pair? (first para))
       (shuffle (revpair para)))
      (else
