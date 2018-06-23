@@ -120,7 +120,8 @@
 (test-equal '(a b)
   (shuffle '(a b)))
 
-(test-equal '((a b) (c d))
-  (shuffle '((a b) (c d))))
-
 (test-end "shuffle-test")
+
+;; (shuffle '((a b) (c d)))
+;; この値を決めるためには、(shuffle (revpair para)) が何かを見つけなければいけない
+;; (revpair para) が ((a b) (c d)) のときの (shuffle (revpair para)) の値を知る必要がある。
