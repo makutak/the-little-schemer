@@ -21,6 +21,11 @@
                 3
                 '(6 2 4 caviar 5 7 3)))
 
+(test-equal #t
+  (keep-looking 'caviar
+                4
+                '(6 2 4 caviar 5 7 3)))
+
 (test-end "keep-looking-test")
 
 (define looking
