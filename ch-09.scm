@@ -128,5 +128,11 @@
 (test-end "shuffle-test")
 
 ;; (shuffle '((a b) (c d)))
+;; => (revpair '((a b) (c d)))
+;; ==> '((c d) (a b))
+;; となり、循環する?
+;; 以下textより、
+;; ```
 ;; この値を決めるためには、(shuffle (revpair para)) が何かを見つけなければいけない
 ;; (revpair para) が ((a b) (c d)) のときの (shuffle (revpair para)) の値を知る必要がある。
+;;```
