@@ -136,3 +136,15 @@
 ;; この値を決めるためには、(shuffle (revpair para)) が何かを見つけなければいけない
 ;; (revpair para) が ((a b) (c d)) のときの (shuffle (revpair para)) の値を知る必要がある。
 ;;```
+
+(define C
+  (lambda (n)
+    (cond
+     ((one? n)
+      1)
+     (else
+      (cond
+       ((even?? n)
+        (C (o/ n 2)))
+       (else
+        (C (add1 (o* 3 n)))))))))
