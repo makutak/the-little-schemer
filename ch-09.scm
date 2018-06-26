@@ -163,7 +163,7 @@
 (test-begin "A-test")
 
 (test-equal 2
-  (A 1 2))
+  (A 1 0))
 
 (test-equal 3
   (A 1 1))
