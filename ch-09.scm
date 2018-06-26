@@ -148,3 +148,20 @@
         (C (o/ n 2)))
        (else
         (C (add1 (o* 3 n)))))))))
+
+(define A
+  (lambda (n m)
+    m))
+
+(test-begin "A-test")
+
+(test-equal 2
+  (A 1 2))
+
+(test-equal 3
+  (A 1 1))
+
+(test-equal 7
+  (A 2 2))
+
+(test-end "A-test")
