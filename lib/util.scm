@@ -27,7 +27,8 @@
             second
             build
             a-pair?
-            revpair))
+            revpair
+            one?))
 
 (define atom?
   (lambda (x)
@@ -227,3 +228,7 @@
     (build
      (second pair)
      (first pair))))
+
+(define one?
+  (lambda (n)
+    (= n 1)))
