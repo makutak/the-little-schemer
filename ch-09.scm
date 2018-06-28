@@ -172,3 +172,11 @@
   (A 2 2))
 
 (test-end "A-test")
+
+(define my-length
+  (lambda (l)
+    (cond
+     ((null? l)
+      0)
+     (else
+      (add1 (my-length (cdr l)))))))
