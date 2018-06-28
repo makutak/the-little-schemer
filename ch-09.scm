@@ -180,3 +180,10 @@
       0)
      (else
       (add1 (my-length (cdr l)))))))
+
+(lambda (l)
+  (cond
+   ((null? l)
+    0)
+   (else
+    (add1 (eternity (cdr l))))))
