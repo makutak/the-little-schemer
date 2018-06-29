@@ -188,6 +188,18 @@
    (else
     (add1 (eternity (cdr l))))))
 
+(test-begin "evaluate-0-length-list-test")
+
+(test-equal 0
+  ((lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1 (eternity (cdr l)))))) '()))
+
+(test-end "evaluate-0-length-list-test")
+
 (define length_0
   (lambda (l)
     (cond
