@@ -207,3 +207,32 @@
       0)
      (else
       (add1 (eternity (cdr l)))))))
+
+(lambda (l)
+  (cond
+   ((null? l)
+    0)
+   (else
+    (add1 (length_0 (cdr l))))))
+
+(test-begin "evaluate-1-length-list-test")
+
+(test-equal 0
+  ((lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (length_0 (cdr l))))))
+   '()))
+
+(test-equal 1
+  ((lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (length_0 (cdr l))))))
+   '(foo)))
+
+(test-end "evaluate-1-length-list-test")
