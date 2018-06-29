@@ -187,3 +187,11 @@
     0)
    (else
     (add1 (eternity (cdr l))))))
+
+(define length_0
+  (lambda (l)
+    (cond
+     ((null? l)
+      0)
+     (else
+      (add1 (eternity (cdr l)))))))
