@@ -386,3 +386,28 @@
 
 
 (test-end "evaluate-2-length-list-test")
+
+;;length_0を生成する
+((lambda (len)
+    (lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1 (len (cdr l)))))))
+ eternity)
+
+(test-begin "rewrite-length-0-test")
+
+(test-equal 0
+  (((lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l)))))))
+    eternity)
+   '()))
+
+(test-end "rewrite-length-0-test")
