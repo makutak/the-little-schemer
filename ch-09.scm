@@ -465,3 +465,105 @@
       eternity)) '(foo)))
 
 (test-end "rewriter-length_<=1-test")
+
+((lambda (len)
+    (lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1 (len (cdr l)))))))
+ ((lambda (len)
+     (lambda (l)
+       (cond
+        ((null? l)
+         0)
+        (else
+         (add1 (len (cdr l)))))))
+  ((lambda (len)
+     (lambda (l)
+       (cond
+        ((null? l)
+         0)
+        (else
+         (add1 (len (cdr l)))))))
+   eternity)))
+
+(test-begin "rewrite-length_<=2-test")
+
+(test-equal 0
+  (((lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l)))))))
+     ((lambda (len)
+        (lambda (l)
+          (cond
+           ((null? l)
+            0)
+           (else
+            (add1 (len (cdr l)))))))
+      ((lambda (len)
+         (lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1 (len (cdr l)))))))
+       eternity)))
+   '()))
+
+(test-equal 1
+  (((lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l)))))))
+     ((lambda (len)
+        (lambda (l)
+          (cond
+           ((null? l)
+            0)
+           (else
+            (add1 (len (cdr l)))))))
+      ((lambda (len)
+         (lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1 (len (cdr l)))))))
+       eternity)))
+   '(foo)))
+
+(test-equal 2
+  (((lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l)))))))
+     ((lambda (len)
+        (lambda (l)
+          (cond
+           ((null? l)
+            0)
+           (else
+            (add1 (len (cdr l)))))))
+      ((lambda (len)
+         (lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1 (len (cdr l)))))))
+       eternity)))
+   '(foo bar)))
+
+(test-end "rewrite-length_<=2-test")
