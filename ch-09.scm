@@ -289,3 +289,100 @@
 
 
 (test-end "evaluate-1-length-list-test-2")
+
+;;長さ2以下のリストの長さを求めることができる
+(lambda (l)
+  (cond
+   ((null? l)
+    0)
+   (else
+    (add1
+     ((lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1
+           ((lambda (l)
+              (cond
+               ((null? l)
+                0)
+               (else
+                (add1 (eternity (cdr l))))))
+            (cdr l))))))
+      (cdr l))))))
+
+
+(test-begin "evaluate-2-length-list-test")
+
+(test-equal 0
+  ((lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1
+        ((lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1
+              ((lambda (l)
+                 (cond
+                  ((null? l)
+                   0)
+                  (else
+                   (add1 (eternity (cdr l))))))
+               (cdr l))))))
+         (cdr l))))))
+   '()))
+
+(test-equal 1
+  ((lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1
+        ((lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1
+              ((lambda (l)
+                 (cond
+                  ((null? l)
+                   0)
+                  (else
+                   (add1 (eternity (cdr l))))))
+               (cdr l))))))
+         (cdr l))))))
+   '(foo)))
+
+(test-equal 2
+  ((lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1
+        ((lambda (l)
+           (cond
+            ((null? l)
+             0)
+            (else
+             (add1
+              ((lambda (l)
+                 (cond
+                  ((null? l)
+                   0)
+                  (else
+                   (add1 (eternity (cdr l))))))
+               (cdr l))))))
+         (cdr l))))))
+   '(foo bar)))
+
+
+(test-end "evaluate-2-length-list-test")
