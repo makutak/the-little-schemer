@@ -236,3 +236,54 @@
    '(foo)))
 
 (test-end "evaluate-1-length-list-test")
+
+(lambda (l)
+  (cond
+   ((null? l)
+    0)
+   (else
+    (add1
+     ((lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (eternity (cdr l))))))
+      (cdr l))))))
+
+(test-begin "evaluate-1-length-list-test-2")
+
+(test-equal 0
+  ((lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1
+         ((lambda (l)
+            (cond
+             ((null? l)
+              0)
+             (else
+              (add1 (eternity (cdr l))))))
+          (cdr l))))))
+   '()))
+
+(test-equal 1
+  ((lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1
+         ((lambda (l)
+            (cond
+             ((null? l)
+              0)
+             (else
+              (add1 (eternity (cdr l))))))
+          (cdr l))))))
+   '(foo)))
+
+
+(test-end "evaluate-1-length-list-test-2")
