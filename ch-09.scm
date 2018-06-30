@@ -411,3 +411,57 @@
    '()))
 
 (test-end "rewrite-length-0-test")
+
+((lambda (f)
+    (lambda (l)
+      (cond
+       ((null? l)
+        0)
+       (else
+        (add1 (f (cdr l)))))))
+ ((lambda (g)
+     (lambda (l)
+       (cond
+        ((null? l)
+         0)
+        (else
+         (add1 (g (cdr l)))))))
+  eternity))
+
+(test-begin "rewriter-length_<=1-test")
+
+(test-equal 0
+  (((lambda (f)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (f (cdr l)))))))
+     ((lambda (g)
+        (lambda (l)
+          (cond
+           ((null? l)
+            0)
+           (else
+            (add1 (g (cdr l)))))))
+      eternity)) '()))
+
+(test-equal 1
+  (((lambda (f)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (f (cdr l)))))))
+     ((lambda (g)
+        (lambda (l)
+          (cond
+           ((null? l)
+            0)
+           (else
+            (add1 (g (cdr l)))))))
+      eternity)) '(foo)))
+
+(test-end "rewriter-length_<=1-test")
