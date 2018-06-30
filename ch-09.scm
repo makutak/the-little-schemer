@@ -181,6 +181,7 @@
      (else
       (add1 (my-length (cdr l)))))))
 
+;;長さ0のリストを求めることができる
 (lambda (l)
   (cond
    ((null? l)
@@ -237,6 +238,7 @@
 
 (test-end "evaluate-1-length-list-test")
 
+;;長さ1以下のリストの長さを求めることができる
 (lambda (l)
   (cond
    ((null? l)
