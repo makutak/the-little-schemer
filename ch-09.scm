@@ -594,3 +594,183 @@
    '()))
 
 (test-end "mk-length_0-test")
+
+;;length_<=1
+((lambda (mk-length)
+   (mk-length
+    (mk-length eternity)))
+ (lambda (len)
+   (lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (len (cdr l))))))))
+
+(test-begin "mk-length_<=1-test")
+
+(test-equal 0
+  (((lambda (mk-length)
+       (mk-length
+        (mk-length eternity)))
+     (lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l))))))))
+   '()))
+
+(test-equal 1
+  (((lambda (mk-length)
+       (mk-length
+        (mk-length eternity)))
+     (lambda (len)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1 (len (cdr l))))))))
+   '(foo)))
+
+(test-end "mk-length_<=1-test")
+
+;;length_<=2
+((lambda (mk-length)
+   (mk-length
+    (mk-length
+     (mk-length eternity))))
+ (lambda (len)
+   (lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (len (cdr l))))))))
+
+(test-begin "mk-length_<=2-test")
+
+(test-equal 0
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length eternity))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '()))
+
+(test-equal 1
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length eternity))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '(foo)))
+
+(test-equal 2
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length eternity))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '(foo bar)))
+
+(test-end "mk-length_<=2-test")
+
+
+;;length_<=3
+((lambda (mk-length)
+   (mk-length
+    (mk-length
+     (mk-length
+      (mk-length eternity)))))
+ (lambda (len)
+   (lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (len (cdr l))))))))
+
+(test-begin "mk-length_<=3-test")
+
+(test-equal 0
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length
+         (mk-length eternity)))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '()))
+
+(test-equal 1
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length
+         (mk-length eternity)))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '(foo)))
+
+(test-equal 2
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length
+         (mk-length eternity)))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '(foo bar)))
+
+(test-equal 3
+  (((lambda (mk-length)
+      (mk-length
+       (mk-length
+        (mk-length
+         (mk-length eternity)))))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '(foo bar piyo)))
+
+(test-end "mk-length_<=3-test")
