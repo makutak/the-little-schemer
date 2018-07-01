@@ -567,3 +567,30 @@
    '(foo bar)))
 
 (test-end "rewrite-length_<=2-test")
+
+;;length_0
+((lambda (mk-length)
+   (mk-length eternity))
+ (lambda (len)
+   (lambda (l)
+     (cond
+      ((null? l)
+       0)
+      (else
+       (add1 (len (cdr l))))))))
+
+(test-begin "mk-length_0-test")
+
+(test-equal 0
+  (((lambda (mk-length)
+      (mk-length eternity))
+    (lambda (len)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1 (len (cdr l))))))))
+   '()))
+
+(test-end "mk-length_0-test")
