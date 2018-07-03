@@ -785,3 +785,21 @@
        (add1
         ((mk-length eternity)
          (cdr l))))))))
+
+(test-begin "mk-length_<=1-test-again")
+
+(test-equal 1
+  (((lambda (mk-length)
+      (mk-length mk-length))
+    (lambda (mk-length)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1
+           ((mk-length eternity)
+            (cdr l))))))))
+   '(apple)))
+
+(test-end "mk-length_<=1-test-again")
