@@ -783,4 +783,5 @@
        0)
       (else
        (add1
-        (mk-length (cdr l))))))))
+        ((mk-length eternity)
+         (cdr l))))))))
