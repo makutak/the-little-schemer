@@ -776,10 +776,11 @@
 
 ((lambda (mk-length)
    (mk-length mk-length))
- (lambda (length)
+ (lambda (mk-length)
    (lambda (l)
      (cond
       ((null? l)
        0)
       (else
-       (add1 (length (cdr l))))))))
+       (add1
+        (mk-length (cdr l))))))))
