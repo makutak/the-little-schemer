@@ -696,7 +696,6 @@
 
 (test-end "mk-length_<=2-test")
 
-
 ;;length_<=3
 ((lambda (mk-length)
    (mk-length
