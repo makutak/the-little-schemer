@@ -804,14 +804,20 @@
 
 (test-end "mk-length_<=1-test-again")
 
-((lambda (mk-length)
-   (mk-length mk-length))
- (lambda (mk-length)
-   (lambda (l)
-     (cond
-      ((null? l)
-       0)
-      (else
-       (add1
-        ((mk-length mk-length)
-         (cdr l))))))))
+(test-begin "mk-length-test-again")
+
+(test-equal 5
+  (((lambda (mk-length)
+       (mk-length mk-length))
+     (lambda (mk-length)
+       (lambda (l)
+         (cond
+          ((null? l)
+           0)
+          (else
+           (add1
+            ((mk-length mk-length)
+             (cdr l))))))))
+   '(a b c d e)))
+
+(test-end "mk-length-test-again")
