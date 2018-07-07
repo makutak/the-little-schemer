@@ -830,5 +830,6 @@
       ((null? l) 0)
       (else
        (add1
-        ((mk-length mk-length)
+        ((lambda (x)
+           ((mk-length mk-length) x))
          (cdr l))))))))
