@@ -840,3 +840,31 @@
     ((lambda (f) (f f))
      (lambda (f)
        (le (lambda (x) ((f f) x)))))))
+
+(test-begin "Y-combinator-test")
+
+(test-equal 0
+  ((Y (lambda (length)
+         (lambda (l)
+           (cond
+            ((null? l) 0)
+            (else (add1 (length (cdr l))))))))
+   '()))
+
+(test-equal 5
+  ((Y (lambda (length)
+         (lambda (l)
+           (cond
+            ((null? l) 0)
+            (else (add1 (length (cdr l))))))))
+   '(1 2 3 4 5)))
+
+(test-equal 7
+  ((Y (lambda (length)
+         (lambda (l)
+           (cond
+            ((null? l) 0)
+            (else (add1 (length (cdr l))))))))
+   '(1 2 3 4 5 6 7)))
+
+(test-end "Y-combinator-test")
