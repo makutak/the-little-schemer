@@ -830,4 +830,5 @@
       ((null? l) 0)
       (else
        (add1
-        (length (cdr l))))))))
+        ((mk-length mk-length)
+         (cdr l))))))))
