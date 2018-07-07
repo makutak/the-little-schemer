@@ -825,11 +825,12 @@
 ((lambda (mk-length)
    (mk-length mk-length))
  (lambda (mk-length)
-   (lambda (l)
-     (cond
-      ((null? l)
-       0)
-      (else
-       (add1
-        ((mk-length mk-length)
-         (cdr l))))))))
+   ((lambda (length)
+      (lambda (l)
+        (cond
+         ((null? l)
+          0)
+         (else
+          (add1
+           (length (cdr l)))))))
+    (mk-length mk-length))))
