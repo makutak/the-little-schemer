@@ -21,7 +21,14 @@
             1st-sub-exp
             2nd-sub-exp
             operator
-            even??))
+            even??
+            pick
+            first
+            second
+            build
+            a-pair?
+            revpair
+            one?))
 
 (define atom?
   (lambda (x)
@@ -185,3 +192,43 @@
 (define even??
   (lambda (n)
     (o= (o* (o/ n 2) 2) n)))
+
+(define pick
+  (lambda (n lat)
+    (cond
+     ((zero? (sub1 n))
+      (car lat))
+     (else
+      (pick (sub1 n) (cdr lat))))))
+
+(define first
+  (lambda (p)
+    (car p)))
+
+(define second
+  (lambda (p)
+    (car (cdr p))))
+
+(define build
+  (lambda (a1 a2)
+    (cons a1
+          (cons a2 '()))))
+
+(define a-pair?
+  (lambda (x)
+    (cond
+     ((atom? x) #f)
+     ((null? x) #f)
+     ((null? (cdr x)) #f)
+     ((null? (cdr (cdr x))) #t)
+     (else #f))))
+
+(define revpair
+  (lambda (pair)
+    (build
+     (second pair)
+     (first pair))))
+
+(define one?
+  (lambda (n)
+    (= n 1)))
