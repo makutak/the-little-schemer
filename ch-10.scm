@@ -48,3 +48,46 @@
                    (lambda (x) 'nothing!!)))
 
 (test-end "lookup-in-entry-test")
+
+
+;;table: entryのリスト
+
+(define lookup-in-table
+  (lambda (name table table-f)
+    (cond
+     ((null? table) (table-f name))
+     (else
+      (lookup-in-entry name
+                       (car table)
+                       (lambda (name)
+                         (lookup-in-table name
+                                          (cdr table)
+                                          table-f)))))))
+
+(test-begin "lookup-in-table-test")
+
+(test-equal 'spaghetti
+  (lookup-in-table 'entree
+                  '(((entree desert)
+                     (spaghetti spumoni))
+                    ((appetizer entree beverage)
+                     (food tastes good)))
+                  (lambda (name) '())))
+
+(test-equal 'good
+  (lookup-in-table 'beverage
+                  '(((entree desert)
+                     (spaghetti spumoni))
+                    ((appetizer entree beverage)
+                     (food tastes good)))
+                  (lambda (name) '())))
+
+(test-equal '()
+  (lookup-in-table 'foo
+                  '(((entree desert)
+                     (spaghetti spumoni))
+                    ((appetizer entree beverage)
+                     (food tastes good)))
+                  (lambda (name) '())))
+
+(test-end "lookup-in-table-test")
