@@ -35,4 +35,10 @@
                      (food tastes good))        ;; values
                    (lambda (x) '())))
 
+(test-equal '()
+  (lookup-in-entry 'desert
+                   '((appetier entree beverage) ;; keys
+                     (food tastes good))        ;; values
+                   (lambda (x) '())))
+
 (test-end "lookup-in-entry-test")
