@@ -31,8 +31,8 @@
 
 (test-equal 'tastes
   (lookup-in-entry 'entree
-                   '((appetier entree beverage)
-                     (food tastes good))
+                   '((appetier entree beverage) ;; keys
+                     (food tastes good))        ;; values
                    (lambda (x) '())))
 
 (test-end "lookup-in-entry-test")
