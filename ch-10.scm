@@ -116,7 +116,7 @@
      ((number? e) *const)
      ((eq? e #t)  *const)
      ((eq? e #f)  *const)
-     ((eq? e (quote cons)) *const)
+     ((eq? e (quote cons))  *const)
      ((eq? e (quote car))   *const)
      ((eq? e (quote cdr))   *const)
      ((eq? e (quote null?)) *const)
