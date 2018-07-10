@@ -92,7 +92,13 @@
 
 (test-end "lookup-in-table-test")
 
-(define *const '*const)
+(define *const
+  (lambda (e table)
+    (cond
+     ((number? e) e)
+     ((eq? e #t) #t)
+     ((eq? e #f) #f)
+     (else (build (quote primitive) e)))))
 
 (define *identifier '*identifier)
 
