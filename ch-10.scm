@@ -167,6 +167,13 @@
   (lambda (e table)
     ((expression-to-action e) e table)))
 
+(test-begin "meaning-test")
+
+(test-equal '(no-primitive ((((y z) ((8) 9))) (x) (cons x y)))
+  (meaning '(lambda (x) (cons x y)) '(((y z) ((8) 9)))))
+
+(test-end "meaning-test")
+
 (define value
   (lambda (e)
     (meaning e '())))
