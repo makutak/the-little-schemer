@@ -100,11 +100,24 @@
      ((eq? e #f) #f)
      (else (build (quote primitive) e)))))
 
-(define *identifier '*identifier)
+(define initial-table
+  (lambda (name)
+    (car (quote ()))))
 
-(define *quote '*quote)
+(define *identifier
+  (lambda (e table)
+    (lookip-in-table e table initial-table)))
 
-(define *lambda '*lambda)
+(define text-of second)
+
+(define *quote
+  (lambda (e table)
+    (text-of e)))
+
+(define *lambda
+  (lambda (e table)
+    (build (quote no-primitive)
+           (cons table (cdr e)))))
 
 (define *cond '*cond)
 
