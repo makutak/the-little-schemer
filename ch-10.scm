@@ -121,6 +121,12 @@
 
 (define *cond '*cond)
 
+(define table-of first)
+
+(define formals-of second)
+
+(define body-of third)
+
 (define *application '*application)
 
 (define atom-to-action
