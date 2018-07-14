@@ -1,4 +1,4 @@
-(define-module (util)
+(define-module (lib util)
   #:export (atom?
             lat?
             member?

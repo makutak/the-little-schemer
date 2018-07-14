@@ -1,13 +1,13 @@
 #!/usr/local/bin/guile
 !#
 
+(add-to-load-path ".")
+
 (define-module (ch-10)
+  #:use-module (lib util)
   #:export (lookup-in-entry
             lookup-in-table
             meaning))
-
-(add-to-load-path "./lib/")
-(import (util))
 
 ;;entry: 連想配列のようなもの
 

@@ -1,10 +1,11 @@
 #!/usr/local/bin/guile
 !#
 
-(add-to-load-path "../")
+(add-to-load-path ".")
+(add-to-load-path "..")
 
-(import (srfi srfi-64)
-        (ch-10))
+(use-modules (ch-10)
+             (srfi srfi-64))
 
 (set! test-log-to-file #f)
 
