@@ -1,7 +1,7 @@
 #!/usr/local/bin/guile
 !#
 
-(add-to-load-path ".")
+(add-to-load-path (dirname (current-filename)))
 
 (define-module (ch-10)
   #:use-module (lib util)
