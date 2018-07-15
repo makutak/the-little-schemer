@@ -93,7 +93,7 @@
 
 (define value
   (lambda (e)
-    (meaning e '())))
+    (meaning e (quote ()))))
 
 (define *const
   (lambda (e table)
