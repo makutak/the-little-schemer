@@ -11,6 +11,8 @@
 
 ;;entry: 連想配列のようなもの
 
+(define new-entry build)
+
 (define lookup-in-entry-help
   (lambda (name names values entry-f)
     (cond
