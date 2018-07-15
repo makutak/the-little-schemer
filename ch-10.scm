@@ -33,6 +33,8 @@
                           entry-f)))
 ;;table: entryのリスト
 
+(define extend-table cons)
+
 (define lookup-in-table
   (lambda (name table table-f)
     (cond
