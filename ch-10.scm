@@ -109,7 +109,7 @@
 
 (define *identifier
   (lambda (e table)
-    (lookip-in-table e table initial-table)))
+    (lookup-in-table e table initial-table)))
 
 (define text-of second)
 
