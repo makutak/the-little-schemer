@@ -162,7 +162,7 @@
 
 (define *application
   (lambda (e table)
-    (apply
+    (applyz
      (meaning (function-of e) table)
      (evlis (arguments-of e) table))))
 
