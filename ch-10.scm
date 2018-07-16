@@ -161,3 +161,12 @@
 (define answer-of second)
 
 (define *application '*application)
+
+(define evlis
+  (lambda (args table)
+    (cond
+     ((null? args)
+      (quote ()))
+     (else
+      (cons (meaning (car args) table)
+            (evlis (cdr args) table))))))
