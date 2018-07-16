@@ -160,7 +160,15 @@
 
 (define answer-of second)
 
-(define *application '*application)
+(define *application
+  (lambda (e table)
+    (apply
+     (meaning (function-of e) table)
+     (evlis (arguments-of e) table))))
+
+(define function-of car)
+
+(define arguments-of cdr)
 
 (define evlis
   (lambda (args table)
