@@ -4,7 +4,7 @@
 (add-to-load-path ".")
 (add-to-load-path "..")
 
-(use-modules (ch-01)
+(use-modules (ch-02)
              (lib util)
              (srfi srfi-64))
 
