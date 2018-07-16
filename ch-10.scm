@@ -7,7 +7,8 @@
   #:use-module (lib util)
   #:export (lookup-in-entry
             lookup-in-table
-            meaning))
+            meaning
+            value))
 
 ;;entry: 連想配列のようなもの
 
