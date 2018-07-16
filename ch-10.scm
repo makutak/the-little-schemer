@@ -61,16 +61,16 @@
      ((number? e) *const)
      ((eq? e #t)  *const)
      ((eq? e #f)  *const)
-     ((eq? e (quote cons))  *const)
-     ((eq? e (quote car))   *const)
-     ((eq? e (quote cdr))   *const)
-     ((eq? e (quote null?)) *const)
-     ((eq? e (quote eq?))   *const)
-     ((eq? e (quote atom?)) *const)
-     ((eq? e (quote zero?)) *const)
-     ((eq? e (quote add1))  *const)
-     ((eq? e (quote sub1))  *const)
-     ((eq? e (quote number?)) *const)
+     ((eq? e 'cons)  *const)
+     ((eq? e 'car)   *const)
+     ((eq? e 'cdr)   *const)
+     ((eq? e 'null?) *const)
+     ((eq? e 'eq?)   *const)
+     ((eq? e 'atom?) *const)
+     ((eq? e 'zero?) *const)
+     ((eq? e 'add1)  *const)
+     ((eq? e 'sub1)  *const)
+     ((eq? e 'number?) *const)
      (else *identifier))))
 
 (define list-to-action
@@ -78,11 +78,11 @@
     (cond
      ((atom? (car e))
       (cond
-       ((eq? (car e) (quote quote))
+       ((eq? (car e) 'quote)
         *quote)
-       ((eq? (car e) (quote lambda))
+       ((eq? (car e) 'lambda)
         *lambda)
-       ((eq? (car e) (quote cond))
+       ((eq? (car e) 'cond)
         *cond)
        (else *application)))
      (else *application))))
@@ -93,7 +93,7 @@
 
 (define value
   (lambda (e)
-    (meaning e (quote ()))))
+    (meaning e '())))
 
 (define *const
   (lambda (e table)
@@ -101,11 +101,11 @@
      ((number? e) e)
      ((eq? e #t) #t)
      ((eq? e #f) #f)
-     (else (build (quote primitive) e)))))
+     (else (build 'primitive e)))))
 
 (define initial-table
   (lambda (name)
-    (car (quote ()))))
+    (car '())))
 
 (define *identifier
   (lambda (e table)
@@ -119,7 +119,7 @@
 
 (define *lambda
   (lambda (e table)
-    (build (quote no-primitive)
+    (build 'non-primitive
            (cons table (cdr e)))))
 
 (define table-of first)
@@ -153,7 +153,7 @@
   (lambda (x)
     (cond
      ((atom? x)
-      (eq? x (quote else)))
+      (eq? x 'else))
      (else #f))))
 
 (define question-of first)
@@ -173,19 +173,18 @@
 (define evlis
   (lambda (args table)
     (cond
-     ((null? args)
-      (quote ()))
+     ((null? args) '())
      (else
       (cons (meaning (car args) table)
             (evlis (cdr args) table))))))
 
 (define primitive?
   (lambda (l)
-    (eq? (first l) (quote primitive))))
+    (eq? (first l) 'primitive)))
 
 (define non-primitive?
   (lambda (l)
-    (eq? (first l) (quote non-primitive))))
+    (eq? (first l) 'non-primitive)))
 
 (define applyz
   (lambda (fun vals)
@@ -200,26 +199,26 @@
 (define apply-primitive
   (lambda (name vals)
     (cond
-     ((eq? name (quote cons))
+     ((eq? name 'cons)
       (cons (first vals)
             (second vals)))
-     ((eq? name (quote car))
+     ((eq? name 'car)
       (car (first vals)))
-     ((eq? name (quote cdr))
+     ((eq? name 'cdr)
       (cdr (first vals)))
-     ((eq? name (quote null?))
+     ((eq? name 'null?)
       (null? (first vals)))
-     ((eq? name (quote eq?))
+     ((eq? name 'eq?)
       (eq? (first vals) (second vals)))
-     ((eq? name (quote atom?))
+     ((eq? name 'atom?)
       (:atom? (first vals)))
-     ((eq? name (quote zero?))
+     ((eq? name 'zero?)
       (zero? (first vals)))
-     ((eq? name (quote add1))
+     ((eq? name 'add1)
       (add1 (first vals)))
-     ((eq? name (quote suv1))
+     ((eq? name 'sub1)
       (sub1 (first vals)))
-     ((eq? name (quote number?))
+     ((eq? name 'number?)
       (number? (first vals))))))
 
 (define :atom?
@@ -227,17 +226,15 @@
     (cond
      ((atom? x) #t)
      ((null? x) #f)
-     ((eq? (car x) (quote primitive))
-      #t)
-     ((eq? (car x) (quote non-primitive))
-      #f)
+     ((eq? (car x) 'primitive) #t)
+     ((eq? (car x) 'non-primitive) #t)
      (else #f))))
 
 (define apply-closure
   (lambda (closure vals)
-    (meaning (body-of closure)
-             (extend-table
-              (new-entry
-               (formals-of closure)
-               vals)
-              (table-of closure)))))
+    (meaning
+     (body-of closure)
+     (extend-table (new-entry
+                    (formals-of closure)
+                    vals)
+                   (table-of closure)))))
