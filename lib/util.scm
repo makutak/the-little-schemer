@@ -1,4 +1,4 @@
-(define-module (util)
+(define-module (lib util)
   #:export (atom?
             lat?
             member?
@@ -25,6 +25,7 @@
             pick
             first
             second
+            third
             build
             a-pair?
             revpair
@@ -208,6 +209,10 @@
 (define second
   (lambda (p)
     (car (cdr p))))
+
+(define third
+  (lambda (p)
+    (car (cdr (cdr p)))))
 
 (define build
   (lambda (a1 a2)
