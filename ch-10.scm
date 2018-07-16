@@ -178,3 +178,66 @@
      (else
       (cons (meaning (car args) table)
             (evlis (cdr args) table))))))
+
+(define primitive?
+  (lambda (l)
+    (eq? (first l) (quote primitive))))
+
+(define non-primitive?
+  (lambda (l)
+    (eq? (first l) (quote non-primitive))))
+
+(define applyz
+  (lambda (fun vals)
+    (cond
+     ((primitive? fun)
+      (apply-primitive (second fun)
+                       vals))
+     ((non-primitive? fun)
+      (apply-closure (second fun)
+                     vals)))))
+
+(define apply-primitive
+  (lambda (name vals)
+    (cond
+     ((eq? name (quote cons))
+      (cons (first vals)
+            (second vals)))
+     ((eq? name (quote car))
+      (car (first vals)))
+     ((eq? name (quote cdr))
+      (cdr (first vals)))
+     ((eq? name (quote null?))
+      (null? (first vals)))
+     ((eq? name (quote eq?))
+      (eq? (first vals) (second vals)))
+     ((eq? name (quote atom?))
+      (:atom? (first vals)))
+     ((eq? name (quote zero?))
+      (zero? (first vals)))
+     ((eq? name (quote add1))
+      (add1 (first vals)))
+     ((eq? name (quote suv1))
+      (sub1 (first vals)))
+     ((eq? name (quote number?))
+      (number? (first vals))))))
+
+(define :atom?
+  (lambda (x)
+    (cond
+     ((atom? x) #t)
+     ((null? x) #f)
+     ((eq? (car x) (quote primitive))
+      #t)
+     ((eq? (car x) (quote non-primitive))
+      #f)
+     (else #f))))
+
+(define apply-closure
+  (lambda (closure vals)
+    (meaning (body-of closure)
+             (extend-table
+              (new-entry
+               (formals-of closure)
+               vals)
+              (table-of closure)))))
