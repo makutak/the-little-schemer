@@ -128,8 +128,6 @@
 
 (define body-of third)
 
-(define *application '*application)
-
 (define *cond
   (lambda (e table)
     (evcon (cond-lines-of e)
@@ -161,3 +159,5 @@
 (define question-of first)
 
 (define answer-of second)
+
+(define *application '*application)
